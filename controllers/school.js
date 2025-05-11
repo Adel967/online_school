@@ -2,7 +2,7 @@ const Course = require('../models/course');
 const Registration = require('../models/registration');
 const Coupon = require('../models/coupon');
 const User = require('../models/user');
-const StudentProject = require('../models/StudentProject');
+const StudentProject = require('../models/studentProject');
 
 const { validationResult } = require('express-validator');
 const { Op, fn, col, where } = require('sequelize');
