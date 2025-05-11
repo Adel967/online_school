@@ -1,0 +1,63 @@
+<%- include('../../includes/head.ejs') %>
+
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+
+    <%- include('../../includes/admin_navbar.ejs') %>
+
+
+    <div class="container h-100 justify-content-center">
+      <div class="row h-100 d-flex justify-content-center">
+        <!-- Left side (image) -->
+        <div class="col-lg-6 col-md-10 mt-5 ">
+          <div class="card shadow p-4 w-100 " >
+            <% if (errorMessage) { %>
+              <div id="flash-message" class="alert alert-danger"><%= errorMessage %></div>
+            <% } %>
+            <% if (successMessage) { %>
+              <div id="flash-message" class="alert alert-success"><%= successMessage %></div>
+            <% } %>
+     
+            <form action="/admin/school" method="POST" class="card card-body">
+                <h3>معلومات المدرسة </h3>
+              
+                <label> اسم المدرسة</label>
+                <input type="text" name="name" class="form-control mb-2" value="<%= school?.name || '' %>">
+              
+                <label>رقم الهاتف </label>
+                <input type="text" name="phoneNumber" class="form-control mb-2" value="<%= school?.phoneNumber || '' %>">
+              
+                <label>الإيميل</label>
+                <input type="email" name="email" class="form-control mb-2" value="<%= school?.email || '' %>">
+              
+                <label>العنوان</label>
+                <input type="text" name="location" class="form-control mb-2" value="<%= school?.location || '' %>">
+              
+                <label>Facebook</label>
+                <input type="text" name="facebookLink" class="form-control mb-2" value="<%= school?.facebookLink || '' %>">
+              
+                <label>Instagram</label>
+                <input type="text" name="instagramLink" class="form-control mb-2" value="<%= school?.instagramLink || '' %>">
+              
+                <label>TikTok</label>
+                <input type="text" name="tiktokLink" class="form-control mb-2" value="<%= school?.tiktokLink || '' %>">
+              
+                <label>YouTube</label>
+                <input type="text" name="youtubeLink" class="form-control mb-2" value="<%= school?.youtubeLink || '' %>">
+              
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/flash-message.js"></script>
+  </body>
+</html>

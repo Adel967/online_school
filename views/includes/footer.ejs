@@ -1,0 +1,103 @@
+  <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container text-center text-md-start">
+        <div class="row text-center text-md-start">
+          <!-- Logo & Description -->
+          <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+            <img
+              src="/images/school_logo1.png"
+              alt="Logo"
+              style="width: 150px"
+              class="mb-3"
+            />
+            <p>
+              منصتنا التعليمية تهدف إلى تعليم البرمجة للأطفال والمبتدئين بطريقة
+              ممتعة وتفاعلية.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h5 class="mb-4 fw-bold text-white">روابط سريعة</h5>
+            <p>
+              <a href="#" class="text-white text-decoration-none">الرئيسية</a>
+            </p>
+            <p>
+              <a href="#" class="text-white text-decoration-none">ماذا نقدم</a>
+            </p>
+            <p>
+              <a href="#" class="text-white text-decoration-none"
+                >مساراتنا التعليمية</a
+              >
+            </p>
+            <p>
+              <a href="#" class="text-white text-decoration-none">
+                مشاريع طلابنا
+              </a>
+            </p>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-md-5 col-lg-5 col-xl-5 mx-auto mt-3">
+            <h5 class="mb-4 fw-bold text-white">تواصل معنا</h5>
+            <p style="display: inline;">
+              <i class="bi bi-telephone-fill me-2"></i>
+              <p style="direction: ltr; display: inline;">
+                <% if(school.phoneNumber) { %> <%= school.phoneNumber %> <% } else
+              { %> غير محدد <% } %>
+              </p>
+           
+            </p>
+            <p>
+              <i class="bi bi-envelope-fill me-2"></i>
+              <% if(school.email) { %> <%= school.email %> <% } else { %> غير
+              محدد <% } %>
+            </p>
+            <p>
+              <i class="bi bi-geo-alt-fill me-2"></i>
+              <% if(school.location) { %> <%= school.location %> <% } else { %>
+              غير محدد <% } %>
+            </p>
+            <div class="mt-3">
+              <% if(school.facebookLink) { %>
+              <a
+                href="<%= school.facebookLink? school.facebookLink : '#'  %>"
+                target="_blank"
+                class="text-white me-3"
+                ><i class="bi bi-facebook fs-4"></i
+              ></a>
+              <% } %> <% if(school.instagramLink) { %>
+              <a
+                href="<%= school.instagramLink? school.instagramLink : '#'  %>"
+                target="_blank"
+                class="text-white me-3"
+                ><i class="bi bi-instagram fs-4"></i
+              ></a>
+              <% } %> <% if(school.youtubeLink) { %>
+              <a
+                href="<%= school.youtubeLink? school.youtubeLink : '#'  %>"
+                target="_blank"
+                class="text-white me-3"
+                ><i class="bi bi-youtube fs-4"></i
+              ></a>
+              <% } %> <% if(school.tiktokLink) { %>
+              <a
+                href="<%= school.tiktokLink? school.tiktokLink : '#'  %>"
+                target="_blank"
+                class="text-white me-3"
+                ><i class="bi bi-tiktok fs-4"></i
+              ></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- Copyright -->
+        <div class="row">
+          <div class="col text-center">
+            <p class="mb-0">&copy; 2025 <%= school.name %>. جميع الحقوق محفوظة.</p>
+          </div>
+        </div>
+      </div>
+    </footer>

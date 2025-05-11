@@ -1,0 +1,81 @@
+<%- include('../../includes/head.ejs') %>
+
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+
+    <%- include('../../includes/admin_navbar.ejs') %>
+
+
+    <div class="container h-100 justify-content-center">
+      <div class="row h-100 d-flex justify-content-center">
+        <!-- Left side (image) -->
+        <div class="col-lg-6 col-md-10 mt-5 ">
+          <div class="card shadow p-4 w-100 " >
+            <h2 class="mb-4">  حساب الأدمن</h2>
+
+            <form method="POST" action="/admin/account">
+              <% if (errors.length > 0) { %>
+                <div class="alert alert-danger">
+                  <ul>
+                    <% errors.forEach(error => { %>
+                      <li><%= error.msg %></li>
+                    <% }) %>
+                  </ul>
+                </div>
+              <% } %>
+            
+              <div class="form-group">
+                <label>الاسم الأول </label>
+                <input type="text" name="firstName" class="form-control" value="<%= oldInput.firstName || admin.firstName %>">
+              </div>
+            
+              <div class="form-group">
+                <label>الاسم الثاني </label>
+                <input type="text" name="lastName" class="form-control" value="<%= oldInput.lastName || admin.lastName %>">
+              </div>
+            
+              <div class="form-group">
+                <label>البريد الالكتروني</label>
+                <input type="email" name="email" class="form-control" value="<%= oldInput.email || admin.email %>">
+              </div>
+            
+              <div class="form-group">
+                <label>رقم الهاتف </label>
+                <input type="text" name="phoneNumber" style="direction: ltr" class="form-control" value="<%= oldInput.phoneNumber || admin.phoneNumber %>">
+              </div>
+            
+              <hr>
+            
+              <h5>تعديل كلمة المرور</h5>
+            
+              <div class="form-group">
+                <label> كلمة المرور الحالية</label>
+                <input type="password" name="currentPassword" class="form-control">
+              </div>
+            
+              <div class="form-group">
+                <label>كلمة المرور الجديدة </label>
+                <input type="password" name="newPassword" class="form-control">
+              </div>
+            
+              <div class="form-group">
+                <label>  تأكيد كلمة المرور الجديدة</label>
+                <input type="password" name="confirmPassword" class="form-control">
+              </div>
+            
+              <button type="submit" class="btn btn-success mt-3">Update Account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/flash-message.js"></script>
+  </body>
+</html>

@@ -1,0 +1,457 @@
+<%- include('../includes/head.ejs') %>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+    <%- include('../includes/school_navbar.ejs') %>
+    <% if (errorMessage) { %>
+    <div id="flash-message" class="alert alert-danger toast-message">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+    <header class="d-flex flex-column" style="height: 100vh">
+      <!-- Hero Section -->
+
+      <section id="hero" class="d-flex align-items-center text-center h-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1 class="display-4 fw-semibold text-white">
+                خلي <span style="color: #00bfa6">البرمجة</span> لعبتك، وخلي
+                <span style="color: #ffd600">المستقبل</span> من صنعك
+              </h1>
+              <h5 class="text-white mt-3 mb-4">
+                دورات مباشرة وممتعة في تعلم البرمجة
+              </h5>
+              <div
+                class="d-flex flex-column align-items-center d-sm-block gap-2"
+              >
+                <a href="https://wa.me/<%= school.phoneNumber%>" target="_blank" class="btn btn-secondary-outline me-sm-1"
+                  >إحجز جلستك المجانية الآن</a
+                >
+                <a
+                  href="https://wa.me/<%= school.phoneNumber%>"
+                  target="_blank"
+                  class="btn btn-primary-outline ms-sm-1"
+                  >تواصل معنا</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- topics-->
+    <section id="topics" class="section-padding text-center border-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 section-title">
+            <h1 class="display-4 fw-semibold">ماذا نقدم ؟</h1>
+            <div class="line"></div>
+            <p>
+              نعلّم البرمجة بأسلوب ممتع وتطبيقي يشمل أهم المجالات المطلوبة
+              اليوم.
+            </p>
+          </div>
+        </div>
+
+        <div class="row section-content">
+          <div class="col-md-3 col-sm-6">
+            <i class="bi bi-phone"></i>
+            <h5>تطبيقات الجوال</h5>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <i class="bi bi-code-slash"></i>
+            <h5>بناء المواقع</h5>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <i class="bi bi-cpu"></i>
+            <h5>أساسيات البرمجة</h5>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <i class="bi bi-controller"></i>
+            <h5>برمجة الألعاب</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Why Our Academy-->
+    <section
+      id="why-our-academy"
+      class="section-padding text-center border-bottom"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-12 section-title">
+            <h1 class="display-4 fw-semibold">لماذا أكاديميتنا؟</h1>
+            <div class="line"></div>
+            <p>تعرف على المميزات التي تجعلنا الخيار الأمثل لتعلم البرمجة</p>
+          </div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-4 col-10">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+              <div class="mb-3">
+                <i class="bi bi-cash-stack display-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3">مرونة في الدفع</h5>
+              <p class="text-muted">
+                يمكنك تجربة أول جلسة من أي دورة مجانًا، مع ضمان استرداد كامل
+                للمبلغ حتى الجلسة الثالثة في حال عدم الرضا.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-10">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+              <div class="mb-3">
+                <i class="bi bi-people-fill display-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3">تعليم مخصص لجميع الأعمار</h5>
+              <p class="text-muted">
+                دورات مصممة لتناسب الأعمار المختلفة مع بناء أساس قوي في البرمجة.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-10">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+              <div class="mb-3">
+                <i class="bi bi-controller display-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3">تعلم عملي وتطبيقي</h5>
+              <p class="text-muted">
+                نبني مشاريع وألعاب حقيقية باستخدام Scratch لجعل التعلم ممتعاً
+                وفعالاً.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-10">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+              <div class="mb-3">
+                <i class="bi bi-person-badge display-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3">مدربون محترفون وداعمون</h5>
+              <p class="text-muted">
+                مدربون بخبرة كبيرة يضمنون تجربة تعليمية مبسطة ومشوقة.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-10">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+              <div class="mb-3">
+                <i class="bi bi-clock-history display-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3">مواعيد مرنة ودروس مباشرة</h5>
+              <p class="text-muted">
+                جلسات تفاعلية مباشرة ومواعيد تناسب الجميع.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 col-10">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+              <div class="mb-3">
+                <i class="bi bi-lightbulb display-4"></i>
+              </div>
+              <h5 class="fw-bold mb-3">إعداد الطلاب للمستقبل</h5>
+              <p class="text-muted">
+                ننمي مهارات التفكير المنطقي، حل المشكلات، والإبداع استعداداً
+                للمستقبل.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Courses-->
+    <section id="courses" class="section-padding text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 section-title">
+            <h1 class="display-4 fw-semibold">مساراتنا التعليمية</h1>
+            <div class="line"></div>
+            <p>الدرس الأول مجاناً لجميع المسارات</p>
+          </div>
+        </div>
+        <div
+          class="row d-flex flex-row gx-sm-4 gy-2 align-items-stretch justify-content-center"
+        >
+          <% if(courses && courses.length > 0) { %> <% for(course of courses) {
+          %>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="<%= course.imageUrl %>"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title"><%= course.title %></h5>
+                <p class="card-text"><%= course.description %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <%= course.sessionNumber %> دروس خلال<%= course.weeksNumber %>
+                  أسابيع
+                </li>
+                <li class="list-group-item">
+                  <%= course.studentsPerGroup %> في كل مجموعة
+                </li>
+                <li class="list-group-item">
+                  الفئة العمرية: <%= course.studentAgeRange %> سنة
+                </li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">
+                      <%= course.courseSale ? Math.round(course.localizedPrice -
+                      (course.localizedPrice * course.courseSale / 100)) :
+                      course.localizedPrice %> <%= course.currency %>
+                    </div>
+                    <% if(course.courseSale){ %>
+                    <div class="text-muted text-decoration-line-through small">
+                      <%= course.localizedPrice %> <%= course.currency %>
+                    </div>
+                    <% } %>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small"
+                    ><%= Math.floor(course.localizedPrice /
+                    course.sessionNumber) %> لكل حصة <%= course.currency
+                    %></span
+                  >
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a
+                    href="/course/register/<%= course.id %>"
+                    class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <% } %> <% } else {%>
+          <h2>لا يوجد كورسات</h2>
+          <% }%>
+          <!-- <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/web_course.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار برمجة المواقع</h5>
+                <p class="card-text">
+                  سيكون الطالب في نهاية المسار قادر على بناء مواقع بإستخدام لغة
+                  ال HTML و ال CSS
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +12 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/mobile_course.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار برمجة تطبيقات الهاتف</h5>
+                <p class="card-text">
+                  سيتعلم الطالب أساسيات برمجة تطبيقات الجوال بإستخدام لغة
+                  البرمجة Dart
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +14 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/programming_fundamental.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار أساسيات البرمجة</h5>
+                <p class="card-text">
+                  سيكون الطالب في نهاية المسار قادر على كتابة أكواد بلغة C++
+                  وفهم المفاهيم الأساسية مثل المتغيرات، الحلقات وأنواع البيانات.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +12 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/mobile_course.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار برمجة المواقع</h5>
+                <p class="card-text">
+                  سيكون الطالب في نهاية المسار قادر على كتابة أكواد بلغة C++
+                  وفهم المفاهيم الأساسية مثل المتغيرات، الحلقات وأنواع البيانات.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +12 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!--Student Projects-->
+    <section id="projects" class="section-padding text-center bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 section-title">
+            <h1 class="display-4 fw-semibold">إنجازات طلابنا</h1>
+            <div class="line"></div>
+            <p>إبداعات حقيقية صنعها طلابنا خلال رحلتهم التعليمية معنا</p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <% if(studentProjects && studentProjects.length > 0) { %> <% for(project of studentProjects) {
+            %>
+            <div class="col-md-6 col-lg-3 col-9 mb-4">
+            <div
+              class="card h-100 shadow-sm border-0 rounded-4 hover-shadow transition"
+            >
+              <img
+                src="<%= project.imageLink %>"
+                class="card-img-top rounded-top-4 h-75"
+                alt="Project Image"
+              />
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-semibold"> <%= project.title %></h5>
+                <p class="card-text text-muted small flex-grow-1">
+                  <%= project.description %>
+                </p>
+                <% if(project.link && project.link.length > 0) { %> 
+                  <a
+                  href="<%= project.link %>"
+                  target="_blank"
+                  class="mt-auto w-100"
+                >
+                  عرض المشروع
+                </a>
+                <%  } %>
+         
+              </div>
+            </div>
+          </div>
+
+            <% } %> <% } else {%>
+          <h2>لا يوجد مشاريع طلاب</h2>
+          <% }%>
+       
+        </div>
+      </div>
+    </section>
+    <!-- Footer Section -->
+    <%- include('../includes/footer.ejs') %>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/flash-message.js"></script>
+  </body>
+</html>

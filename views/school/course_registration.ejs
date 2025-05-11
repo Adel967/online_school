@@ -1,0 +1,66 @@
+<%- include('../includes/head.ejs') %>
+
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+
+    <%- include('../includes/school_navbar.ejs') %>
+
+    <% if (errorMessage) { %>
+        <div id="flash-message" class="alert alert-danger toast-message">
+          <%= errorMessage %>
+        </div>
+        <% } %>
+    
+        <div class="container my-5">
+          <div class="card p-4 shadow-sm">
+            <h3 class="mb-4 text-center">إكمال عملية التسجيل</h3>
+            <form action="/course/register" method="POST" class="container mt-4 border p-4 rounded bg-light">
+                <input type="hidden" name="courseId" value="<%= course.id %>" />
+              
+                <div class="mb-3">
+                  <label class="form-label">الأسم الأول للطالب</label>
+                  <input type="text" class="form-control <%= errors.find(e => e.path === 'studentFirstName') ? 'invalid' : '' %>" name="studentFirstName" value="<%= oldInput.studentFirstName %>" required>
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label">الأسم الثاني للطالب</label>
+                  <input type="text" class="form-control <%= errors.find(e => e.path === 'studentLastName') ? 'invalid' : '' %>" name="studentLastName" value="<%= oldInput.studentLastName %>" required>
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label">تاريخ ميلاد الطالب</label>
+                  <input type="date" class="form-control <%= errors.find(e => e.path === 'studentBirthDate') ? 'invalid' : '' %>" name="studentBirthDate" value="<%= oldInput.studentBirthDate %>" required>
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label">رقم الهاتف للتواصل</label>
+                  <input type="text" class="form-control <%= errors.find(e => e.path === 'phoneNumber') ? 'invalid' : '' %>" name="phoneNumber" value="<%= oldInput.phoneNumber %>" required>
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label">الكوبون (إختياري)</label>
+                  <input type="text" class="form-control <%= errors.find(e => e.path === 'couponUsed') ? 'invalid' : '' %>" name="couponUsed" value="<%= oldInput.couponUsed %>" placeholder="أدخل كود الكوبون إن وجد">
+                </div>
+              
+                <div class="mb-3">
+                  <label class="form-label">ملاحظات (إختياري)</label>
+                  <textarea class="form-control <%= errors.find(e => e.path === 'notes') ? 'invalid' : '' %>" name="notes" rows="3" placeholder="اكتب أي ملاحظات هنا..."><%= oldInput.notes %></textarea>
+                </div>
+              
+                <button type="submit" class="btn btn-primary w-100">تسجيل</button>
+              </form>
+              
+          </div>
+        </div>
+    <!-- Footer Section -->
+    <%- include('../includes/footer.ejs') %>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/flash-message.js"></script>
+
+  </body>
+</html>

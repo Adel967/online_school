@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"
+        ><img   src="/images/school_logo1.png" alt=""
+        /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-5">
+          <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link <%= path == 'dashboard' ? 'active' : ''%>" aria-current="page" href="/admin/dashboard"
+                >لوحة التحكم</a
+              >
+            </li>
+            <a class="nav-link <%= path == 'index' ? 'active' : ''%>" aria-current="page" href="/admin/"
+              >الكورسات</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= path == 'coupons' ? 'active' : ''%>" href="/admin/coupons"> الكوبونات</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= path == 'users' ? 'active' : ''%>" href="/admin/users"> المستخدمين</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= path == 'registrations' ? 'active' : ''%>" href="/admin/registrations"> التسجيلات</a>
+          </li>  
+          <li class="nav-item">
+            <a class="nav-link <%= path == 'studentProjects' ? 'active' : ''%>" href="/admin/student-projects"> مشاريع الطلاب</a>
+        </li>  
+
+        </ul>
+        <div class="ms-auto">
+          <% if(isAuthenticated) { %>
+            <a href="/admin/school" class="btn btn-primary mx-1"> المدرسة</a>
+
+            <a href="/admin/account" class="btn btn-secondary mx-1"> حسابي</a>
+            <a href="/logout"  class="btn btn-secondary mx-1"> تسجيل الخروج</a>
+
+          <% } else {%>
+            <a href="/login"  class="btn btn-secondary mx-1">تسجيل الدخول</a>
+
+            <% } %>  
+        </div>
+      </div>
+    </div>
+  </nav>

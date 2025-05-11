@@ -1,0 +1,228 @@
+<%- include('../includes/head.ejs') %>
+
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+
+    <%- include('../includes/admin_navbar.ejs') %>
+
+
+    <!--Courses-->
+    <section id="courses" class="section-padding ">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 section-title">
+            <h1 class="display-5 fw-semibold">مساراتنا التعليمية</h1>
+            <a href="/admin/add_course"  class="btn btn-secondary mx-1 mt-4">  إضافة كورس</a>
+
+          </div>
+        </div>
+        <div
+          class="row d-flex flex-row gx-sm-4 gy-2 align-items-stretch justify-content-center text-center"
+        >
+
+        <% if(courses && courses.length > 0) { %> 
+          <% for(course of courses) { %>
+            <div class="col-lg-3 col-sm-6 col-9 mb-4">
+              <div class="card course-card h-100 w-100" style="width: 18rem">
+                <img
+                  src="<%= course.imageUrl %>"
+                  class="card-img-top"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <h5 class="card-title">  <%= course.title %></h5>
+                  <p class="card-text">
+                    <%= course.description %>
+                  </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= course.sessionNumber %> دروس خلال<%= course.weeksNumber %> أسابيع</li>
+                  <li class="list-group-item"><%= course.studentsPerGroup %> في كل مجموعة</li>
+                  <li class="list-group-item">الفئة العمرية: <%= course.studentAgeRange %> سنة</li>
+         
+                  <li class="list-group-item d-flex justify-content-center" style="padding: 10px 0">
+                    <a href="/admin/course/edit/<%= course.id %>" class="card-link btn btn-primary px-3"
+                      > تعديل</a
+                    >
+                    <form action="/admin/course/delete" method="POST">
+                      <input type="hidden" value="<%= course.id %>" name="courseId">
+                      <button class="card-link btn btn-danger ms-2 px-3" type="submit">حذف</button>
+                  </form>
+                  </li>
+              
+                </ul>
+              </div>
+            </div>
+           <% } %> 
+        <% } else {%>
+          <h2>لا يوجد كورسات</h2>
+        <% }%>   
+
+          <!-- <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/web_course.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار برمجة المواقع</h5>
+                <p class="card-text">
+                  سيكون الطالب في نهاية المسار قادر على بناء مواقع بإستخدام لغة
+                  ال HTML و ال CSS
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +12 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/mobile_course.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار برمجة تطبيقات الهاتف</h5>
+                <p class="card-text">
+                  سيتعلم الطالب أساسيات برمجة تطبيقات الجوال بإستخدام لغة
+                  البرمجة Dart
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +14 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/programming_fundamental.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار أساسيات البرمجة</h5>
+                <p class="card-text">
+                  سيكون الطالب في نهاية المسار قادر على كتابة أكواد بلغة C++
+                  وفهم المفاهيم الأساسية مثل المتغيرات، الحلقات وأنواع البيانات.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +12 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6 col-9 mb-4">
+            <div class="card course-card h-100 w-100" style="width: 18rem">
+              <img
+                src="/images/mobile_course.png"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">مسار برمجة المواقع</h5>
+                <p class="card-text">
+                  سيكون الطالب في نهاية المسار قادر على كتابة أكواد بلغة C++
+                  وفهم المفاهيم الأساسية مثل المتغيرات، الحلقات وأنواع البيانات.
+                </p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">16 درس خلال 8 أسابيع</li>
+                <li class="list-group-item">طالبين في كل مجموعة</li>
+                <li class="list-group-item">الفئة العمرية: +12 سنة</li>
+                <li
+                  class="list-group-item d-flex flex-row justify-content-center align-items-center"
+                >
+                  <div class="d-flex flex-column">
+                    <div class="fw-bold">2000 ج.م</div>
+                    <div class="text-muted text-decoration-line-through small">
+                      2800 ج.م
+                    </div>
+                  </div>
+                  <span class="mx-2">/</span>
+                  <span class="text-secondary small">180 ج.م لكل حصة</span>
+                </li>
+                <li class="list-group-item" style="padding: 10px 0">
+                  <a href="#" class="card-link btn btn-primary px-5"
+                    >سجل الآن</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

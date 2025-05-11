@@ -1,0 +1,234 @@
+/* VARIABLES */
+:root {
+
+    --c-primary: #00bfa6;
+    --c-secondary: #FFD600;
+    --c-background: #F7F9FB;
+    --c-font: #333333;
+    --c-dark: #212529;
+    --c-primary-light: #33d9b2;
+    --c-secondary-light: #FFEB66;
+    --c-primary-rgb: 0, 191, 166;
+    --c-body: #727272;
+    --font-base: 'Cairo', sans-serif;
+    --box-shadow: 0px 15px 25px rgba(0,0,0,0.08);
+    --transition: all 0.5s ease;
+}
+
+
+
+
+body {
+    font-family: var(--font-base);
+    color: var(--c-body);
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 ,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 600;
+    color: var(--c-font);
+}
+
+a {
+    text-decoration: none;
+    color: var(--c-primary);
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--c-primary-light);
+}
+
+.section-padding {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.btn {
+    border: none;
+    font-weight: 500;
+    
+}
+
+.btn-primary {
+    background-color: var(--c-primary);
+}
+
+.btn-secondary {
+    background-color: var(--c-secondary);
+}
+
+.btn-primary:hover {
+    background-color: var(--c-primary-light);
+    color: var(--c-font);
+}
+
+.btn-secondary:hover {
+    background-color: var(--c-secondary-light);
+    color: var(--c-font);
+
+}
+
+.color-primary {
+    color: var(--c-primary);
+}
+
+.color-secondary {
+    color: var(--c-secondary) !important;
+}
+
+.theme-shadow {
+    box-shadow: var(--box-shadow);
+}
+
+/* Navigation */
+.navbar {
+    box-shadow: var(--box-shadow);
+}
+
+
+.navbar-nav .nav-link {
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link.active {
+    color: var(--c-primary);
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--c-primary);
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+/* Hero */
+
+#hero {
+    background: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)),
+    url("/images/hero.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#hero h1 {
+    color: white;
+}
+
+#hero .btn {
+    width: 250px;
+    padding: 10px 0;
+    font-weight: 600;
+    color: white;
+
+
+
+}
+
+#hero .btn-primary-outline {
+    border: 2px solid var(--c-primary);
+    border-radius: 0;
+}
+
+#hero .btn-primary-outline:hover {
+    border: none;
+    background-color: var(--c-primary);
+}
+
+#hero .btn-secondary-outline {
+    border: 2px solid var(--c-secondary);
+    border-radius: 0;
+}
+
+#hero .btn-secondary-outline:hover {
+    border: none;
+    background-color: var(--c-secondary);
+}
+
+
+.section-title {
+    margin-bottom: 60px;
+}
+
+.section-title .line {
+    width: 60px;
+    height: 4px;
+    margin: 16px auto 24px;
+    background-color: var(--c-secondary);
+}
+
+.section-title p {
+    margin: 0 auto;
+}
+
+
+/*Topics*/
+
+#topics .section-content i {
+    color: var(--c-primary);
+    font-size: 3.5rem;
+}
+
+/*Courses*/
+
+.course-card img {
+    padding: 0 10px;
+    border-radius: 8%;
+    transform: translateY(-7%);
+}
+
+.course-card .card-body {
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+
+/*Footer*/
+
+
+footer li,
+footer p,
+footer a {
+    color: rgba(255,255,255,0.7);
+}
+
+footer a{
+    text-decoration: none;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+#why-our-academy i {
+    color: var(--c-primary);
+}
+
+.invalid {
+    border: 2px solid red;
+}
+
+.toast-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    min-width: 250px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none; /* So it doesn't block clicks */
+    text-align: center;
+  }
+
+
+.school-logo {
+    height: 70px;
+}
+
+.school-logo-lg {
+    height: 90px;
+}

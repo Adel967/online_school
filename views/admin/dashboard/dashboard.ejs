@@ -1,0 +1,140 @@
+<%- include('../../includes/head.ejs') %>
+
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+
+    <%- include('../../includes/admin_navbar.ejs') %>
+
+
+
+    <div class="container mt-4">
+      <h1 class="mb-4">📊  لوحة التحكم</h1>
+    
+      <div class="row g-4">
+        <!-- Total Visits -->
+        <div class="col-md-3">
+          <div class="card border-primary shadow-sm">
+            <div class="card-body text-center">
+              <h6 class="card-title text-primary">Website Visits</h6>
+              <h3><i class="bi bi-bar-chart-fill"></i> <%= visitCount %></h3>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Total Users -->
+        <div class="col-md-3">
+          <div class="card border-success shadow-sm">
+            <div class="card-body text-center">
+              <h6 class="card-title text-success">Total Users</h6>
+              <h3><i class="bi bi-people-fill"></i> <%= totalUsers %></h3>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Registered Users -->
+        <div class="col-md-3">
+          <div class="card border-info shadow-sm">
+            <div class="card-body text-center">
+              <h6 class="card-title text-info">Users Registered on Courses</h6>
+              <h3><i class="bi bi-person-check-fill"></i> <%= registeredUsers %></h3>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Pending Registrations -->
+        <div class="col-md-3">
+          <div class="card border-warning shadow-sm">
+            <div class="card-body text-center">
+              <h6 class="card-title text-warning">Pending Registrations</h6>
+              <h3><i class="bi bi-hourglass-split"></i> <%= pendingRegistrations %></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row g-4 mt-2">
+        <!-- Most Registered Course -->
+        <div class="col-md-6">
+          <div class="card border-dark shadow-sm">
+            <div class="card-body text-center">
+              <h6 class="card-title text-dark">Most Registered Course</h6>
+              <h4><i class="bi bi-bookmark-star-fill"></i> <%= mostRegisteredCourse %></h4>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Total Income -->
+        <div class="col-md-6">
+          <div class="card border-danger shadow-sm">
+            <div class="card-body text-center">
+              <h6 class="card-title text-danger">Total Expected Income</h6>
+              <h4><i class="bi bi-cash-stack"></i> $<%= totalIncome.toFixed(2) %></h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Weekly Income Chart -->
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Weekly Income</h5>
+              <canvas id="incomeChart" height="80"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('incomeChart').getContext('2d');
+  const incomeChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: <%- JSON.stringify(incomeByWeek.map(i => i.week)) %>,
+      datasets: [{
+        label: 'Income ($)',
+        data: <%- JSON.stringify(incomeByWeek.map(i => i.income)) %>,
+        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+        borderRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return `$${context.raw}`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return '$' + value;
+            }
+          }
+        }
+      }
+    }
+  });
+</script>
+  </body>
+</html>

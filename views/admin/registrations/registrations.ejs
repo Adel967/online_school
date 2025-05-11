@@ -1,0 +1,82 @@
+<%- include('../../includes/head.ejs') %>
+
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Nav Bar -->
+
+    <%- include('../../includes/admin_navbar.ejs') %>
+
+
+    <!--Courses-->
+    <section id="courses" class="section-padding">
+      <div class="container">
+        <!-- <div class="row">
+          <div class="col-12 section-title">
+            <h1 class="display-5 fw-semibold">مساراتنا التعليمية</h1>
+          </div>
+        </div> -->
+        <div
+          class="row d-flex flex-row gx-sm-4 gy-2 align-items-stretch justify-content-center text-center"
+        >
+        <form method="get" class="mb-3">
+          <input type="text" name="search" placeholder="Search by name or phone" value="<%= search || '' %>" class="form-control mb-2">
+          
+          <select name="course" class="form-control mb-2">
+            <option value="">All Courses</option>
+            <% courses.forEach(course => { %>
+              <option value="<%= course.id %>" <%= selectedCourse == course.id ? 'selected' : '' %>><%= course.title %></option>
+            <% }) %>
+          </select>
+        
+          <select name="status" class="form-control mb-2">
+            <option value="">All Statuses</option>
+            <% ['pending', 'accepted', 'rejected', 'canceled', 'awaiting_payment', 'in_progress'].forEach(st => { %>
+              <option value="<%= st %>" <%= selectedStatus === st ? 'selected' : '' %>><%= st.replace('_', ' ').toUpperCase() %></option>
+            <% }) %>
+          </select>
+        
+          <button class="btn btn-primary">Filter</button>
+        </form>
+          <% if(registrations && registrations.length > 0) { %>
+     
+              
+              <div class="row">
+                <% registrations.forEach(reg => { %>
+                  <div class="col-md-6 mb-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5><%= reg.firstName %> <%= reg.lastName %></h5>
+                        <p>Phone: <%= reg.phoneNumber %></p>
+                        <p>date: <%= new Date(reg.createdAt).toLocaleDateString() %></p>
+                        <p>Status: <%= reg.registrationStatus %></p>
+                        <a href="/admin/registrations/<%= reg.id %>" class="btn btn-sm btn-secondary">تعديل</a>
+                      </div>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+              
+              <nav>
+                <ul class="pagination">
+                  <% for (let i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%= currentPage === i ? 'active' : '' %>"><a class="page-link" href="?page=<%= i %>&search=<%= search || '' %>&course=<%= selectedCourse || '' %>"><%= i %></a></li>
+                  <% } %>
+                </ul>
+              </nav>
+              
+              
+            
+            <% } else {%>
+          <h2>لا يوجد تسجيلات</h2>
+          <% }%>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
