@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const sequelize = require('./util/database');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const flash = require('express-flash');
 const requestIp = require('request-ip');
 const geoip = require('geoip-lite');
