@@ -277,7 +277,7 @@ secure: true,
         auth: {
         // user: 'hotreloadalkt@gmail.com',
         // pass: 'iefj kqpw ehbe xsox'
-        user: 'adelkutait8@gmail.com',
+        user: 'info@alphacodeedu.com',
         pass: '9rqPVCXUCVJ9'
         },
         // tls: {
