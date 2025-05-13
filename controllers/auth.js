@@ -286,7 +286,7 @@ secure: true,
     });
 
     await transporter.sendMail({
-        from: 'Your School <YOUR_EMAIL@gmail.com>',
+        from: 'Your School info@alphacodeedu.com',
         to: user.email,
         subject: 'Password Reset',
         html: `<div style="direction: rtl; font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; background-color: #f9f9f9;">
