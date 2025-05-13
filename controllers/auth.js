@@ -270,14 +270,19 @@ exports.postResetPasswordEmail = async (req, res) => {
 
     // Email setup
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.zoho.com",
+          port: 465,
+secure: true,
+        //service: 'gmail',
         auth: {
-        user: 'hotreloadalkt@gmail.com',
-        pass: 'iefj kqpw ehbe xsox'
+        // user: 'hotreloadalkt@gmail.com',
+        // pass: 'iefj kqpw ehbe xsox'
+        user: 'info@alphacodeedu.com',
+        pass: 'WvHabpsPfspd'
         },
-        tls: {
-            rejectUnauthorized: false
-          }
+        // tls: {
+        //     rejectUnauthorized: false
+        //   }
     });
 
     await transporter.sendMail({
