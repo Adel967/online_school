@@ -278,7 +278,7 @@ secure: true,
         // user: 'hotreloadalkt@gmail.com',
         // pass: 'iefj kqpw ehbe xsox'
         user: 'adelkutait8@gmail.com',
-        pass: 'WvHabpsPfspd'
+        pass: '9rqPVCXUCVJ9'
         },
         // tls: {
         //     rejectUnauthorized: false
