@@ -16,8 +16,10 @@
           <div class="row">
             <div class="col-12">
               <h1 class="display-4 fw-semibold text-white">
-                خلي <span style="color: #00bfa6">البرمجة</span> لعبتك، وخلي
-                <span style="color: #ffd600">المستقبل</span> من صنعك
+                              رحلة برمجية تبدأ <span style="color: #09A6AF">بالأساس</span> وتنتهي <span style="color: #ffd600">بالإحتراف</span>         
+
+                <!-- خلي <span style="color: #00bfa6">البرمجة</span> لعبتك، وخلي
+                <span style="color: #ffd600">المستقبل</span> من صنعك -->
               </h1>
               <h5 class="text-white mt-3 mb-4">
                 دورات مباشرة وممتعة في تعلم البرمجة
@@ -98,8 +100,8 @@
               </div>
               <h5 class="fw-bold mb-3">مرونة في الدفع</h5>
               <p class="text-muted">
-                يمكنك تجربة أول جلسة من أي دورة مجانًا، مع ضمان استرداد كامل
-                للمبلغ حتى الجلسة الثالثة في حال عدم الرضا.
+                يمكنك تجربة أول و ثاني جلسة من أي دورة مجانًا، مع ضمان استرداد كامل
+                للمبلغ حتى الجلسة الرابعة في حال عدم الرضا.
               </p>
             </div>
           </div>
@@ -176,7 +178,7 @@
           <div class="col-12 section-title">
             <h1 class="display-4 fw-semibold">مساراتنا التعليمية</h1>
             <div class="line"></div>
-            <p>الدرس الأول مجاناً لجميع المسارات</p>
+            <p>الدرس الأول و الثاني مجاناً لجميع المسارات</p>
           </div>
         </div>
         <div
@@ -197,11 +199,15 @@
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <%= course.sessionNumber %> دروس خلال<%= course.weeksNumber %>
+                  <%= course.sessionNumber %> درس خلال <%= course.weeksNumber %>
                   أسابيع
                 </li>
                 <li class="list-group-item">
-                  <%= course.studentsPerGroup %> في كل مجموعة
+<%= course.studentsPerGroup == 1 
+    ? 'طالب واحد' 
+    : course.studentsPerGroup == 2 
+        ? 'طالبين' 
+        : course.studentsPerGroup + ' طلاب' %> في كل مجموعة
                 </li>
                 <li class="list-group-item">
                   الفئة العمرية: <%= course.studentAgeRange %> سنة
@@ -211,7 +217,7 @@
                 >
                   <div class="d-flex flex-column">
                     <div class="fw-bold">
-                      <%= course.courseSale ? Math.round(course.localizedPrice -
+                      <%= course.courseSale ? Math.floor(course.localizedPrice -
                       (course.localizedPrice * course.courseSale / 100)) :
                       course.localizedPrice %> <%= course.currency %>
                     </div>
@@ -223,10 +229,11 @@
                   </div>
                   <span class="mx-2">/</span>
                   <span class="text-secondary small"
-                    ><%= Math.floor(course.localizedPrice /
-                    course.sessionNumber) %> لكل حصة <%= course.currency
-                    %></span
-                  >
+                    >
+                    <%= course.courseSale ? Math.floor((course.localizedPrice -
+                      (course.localizedPrice * course.courseSale / 100) )/ course.sessionNumber) : Math.floor(course.localizedPrice /
+                    course.sessionNumber) %> لكل حصة <%= course.currency %>
+                    </span>
                 </li>
                 <li class="list-group-item" style="padding: 10px 0">
                   <a
