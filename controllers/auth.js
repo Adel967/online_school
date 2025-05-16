@@ -266,7 +266,7 @@ exports.postResetPasswordEmail = async (req, res) => {
     user.resetTokenExpiration = new Date(expiration);
     await user.save();
 
-    const resetUrl = `http://localhost:3000/reset-password/${token}`;
+    const resetUrl = `https://www.alphacodeedu.com/reset-password/${token}`;
 
     // Email setup
     const transporter = nodemailer.createTransport({
