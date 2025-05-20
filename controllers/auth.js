@@ -85,7 +85,7 @@ exports.postLogin = (req, res, next) => {
         .then(
             user => {
                 if (!user) {
-                    req.flash('error', 'رقم الهاتف أو كلمة السر غير صحيحة');
+                    req.flash('error', 'البريد الإلكتروني أو كلمة المرور غير صحيحة');
                     return res.redirect('/login');
                 }
                 bcrypt.compare(password, user.password)
@@ -104,7 +104,6 @@ exports.postLogin = (req, res, next) => {
 
                                     } else {
                                         res.redirect('/');
-
                                     }
                                 });
 
@@ -286,7 +285,7 @@ secure: true,
     });
 
     await transporter.sendMail({
-        from: 'Your School info@alphacodeedu.com',
+        from: 'Alpha Code info@alphacodeedu.com',
         to: user.email,
         subject: 'Password Reset',
         html: `<div style="direction: rtl; font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; background-color: #f9f9f9;">

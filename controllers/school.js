@@ -320,5 +320,7 @@ exports.postEditAccount = async (req, res) => {
     await user.save();
     req.session.user = user; // update session
   }
+  req.flash('success', 'تم تعديل المعلومات الملف الشخصي');
+
   res.redirect('/account');
 };
