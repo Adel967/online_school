@@ -3,6 +3,7 @@ const Registration = require('../models/registration');
 const Coupon = require('../models/coupon');
 const User = require('../models/user');
 const StudentProject = require('../models/studentProject');
+const nodemailer = require('nodemailer');
 
 const { validationResult } = require('express-validator');
 const { Op, fn, col, where } = require('sequelize');
@@ -228,6 +229,7 @@ exports.postRegister = async (req, res, next) => {
     });
 
     req.flash('success', 'تم تسجيل الطالب بنجاح');
+    sendNotification(phoneNumber,course.title,studentFirstName,studentLastName);
     res.redirect('/account');
 
   } catch (err) {
@@ -236,6 +238,39 @@ exports.postRegister = async (req, res, next) => {
   }
 };
 
+
+async function  sendNotification(phoneNumber, courseName, firstName, Lastname)  {
+      const transporter = nodemailer.createTransport({
+          host: "smtp.zoho.com",
+            port: 465,
+  secure: true,
+          //service: 'gmail',
+          auth: {
+          // user: 'hotreloadalkt@gmail.com',
+          // pass: 'iefj kqpw ehbe xsox'
+          user: 'info@alphacodeedu.com',
+          pass: '9rqPVCXUCVJ9'
+          },
+          // tls: {
+          //     rejectUnauthorized: false
+          //   }
+      });
+  
+      await transporter.sendMail({
+          from: 'Alpha Code info@alphacodeedu.com',
+          to: 'adelkutait8@gmail.com',
+          subject: 'Password Reset',
+          html: `<div style="direction: rtl; font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; background-color: #f9f9f9;">
+                  <h2 style="color: #4a90e2;">  قام طالب بتسجيل بكورس</h2>
+                  <p>مرحبا ,</p>
+                  <p> في التسجيل بكورس ${courseName} قام الطالب ${firstName} ${Lastname}</p>
+
+                  <p style="text-align: center;">
+                     رقم الهاتف ${phoneNumber}
+                  </p>
+                  </div>`
+      });
+}
 
 function getUserCurrency(req) {
   const geo = req.geo;
