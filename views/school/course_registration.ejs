@@ -35,7 +35,7 @@
               
                 <div class="mb-3">
                   <label class="form-label">رقم الهاتف للتواصل</label>
-                  <input type="text" class="form-control <%= errors.find(e => e.path === 'phoneNumber') ? 'invalid' : '' %>" name="phoneNumber" value="<%= oldInput.phoneNumber %>" required>
+                  <input type="text" style="direction: ltr" class="form-control <%= errors.find(e => e.path === 'phoneNumber') ? 'invalid' : '' %>" name="phoneNumber" value="<%= oldInput.phoneNumber %>" required>
                 </div>
               
                 <div class="mb-3">
