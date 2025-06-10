@@ -38,15 +38,31 @@ const Course = sequelize.define('course', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  // coursePrices: {
+  //   type: Sequelize.JSON,
+  //   allowNull: false,
+  //   defaultValue: {
+  //     USD: 100,
+  //     EGP: 1000,
+  //     SYR: 10000
+  //   }
+  // },
   coursePrices: {
-    type: Sequelize.JSON,
-    allowNull: false,
-    defaultValue: {
-      USD: 100,
-      EGP: 1000,
-      SYR: 10000
-    }
+  type: Sequelize.TEXT,
+  allowNull: false,
+  get() {
+    const rawValue = this.getDataValue('coursePrices');
+    return rawValue ? JSON.parse(rawValue) : {};
   },
+  set(value) {
+    this.setDataValue('coursePrices', JSON.stringify(value));
+  },
+  defaultValue: JSON.stringify({
+    USD: 100,
+    EGP: 1000,
+    SYR: 10000
+  })
+},
   courseSale: {
     type: Sequelize.FLOAT,
     allowNull: true,
