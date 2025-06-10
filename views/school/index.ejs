@@ -8,6 +8,11 @@
       <%= errorMessage %>
     </div>
     <% } %>
+        <% if (successMessage) { %>
+      <div id="flash-message" class="alert alert-success toast-message">
+        <%= successMessage %>
+      </div>
+      <% } %>
     <header class="d-flex flex-column" style="height: 100vh">
       <!-- Hero Section -->
 

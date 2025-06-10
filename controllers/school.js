@@ -16,6 +16,10 @@ exports.getIndex = async (req, res, next) => {
    if (errorMsg.length === 0) {
     errorMsg = undefined;
    }
+     let successMessage = req.flash('success');
+  if (successMessage.length === 0) {
+    successMessage = undefined;
+  }
 
     const countryCurrencyTranslatedMap = {
         EGP: 'ج.م',
@@ -51,6 +55,7 @@ exports.getIndex = async (req, res, next) => {
           title: "الصفحة الرئيسية",
           studentProjects,
           errorMessage: errorMsg,
+          successMessage: successMessage,
           path: 'index',
           courses: localizedCourses
         });
@@ -183,8 +188,13 @@ exports.postRegister = async (req, res, next) => {
         });
       }
     }
-
-    const finalPrice = basePrice - (basePrice * (discount / 100));
+    
+    var finalPrice  = basePrice;
+    if(course.courseSale) {
+      finalPrice = basePrice - (basePrice * (course.courseSale / 100));
+    }
+    finalPrice = finalPrice - (finalPrice * (discount / 100));
+    finalPrice  = Math.floor(finalPrice);
 
     // 1. Check if user is already registered
     const existingRegistration = await Registration.findOne({
