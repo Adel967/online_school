@@ -8,68 +8,57 @@ const nodemailer = require('nodemailer');
 const { validationResult } = require('express-validator');
 const { Op, fn, col, where } = require('sequelize');
 
-
-
 exports.getIndex = async (req, res, next) => {
+  let errorMsg = req.flash('error');
+  if (errorMsg.length === 0) errorMsg = undefined;
 
-   let errorMsg = req.flash('error');
-   if (errorMsg.length === 0) {
-    errorMsg = undefined;
-   }
-     let successMessage = req.flash('success');
-  if (successMessage.length === 0) {
-    successMessage = undefined;
-  }
+  let successMessage = req.flash('success');
+  if (successMessage.length === 0) successMessage = undefined;
 
-    const countryCurrencyTranslatedMap = {
-        EGP: 'ج.م',
-        SYR: 'ل.س',
-        USD: 'دولار'
+  const countryCurrencyTranslatedMap = {
+    EGP: 'ج.م',
+    SYR: 'ل.س',
+    USD: 'دولار'
+  };
+
+  const userCurrency = getUserCurrency(req);
+  const studentProjects = await StudentProject.findAll();
+
+  try {
+    const courses = await Course.findAll();
+    const localizedCourses = courses.map(course => {
+      const courseData = course.toJSON();
+      const parsedPrices = JSON.parse(courseData.coursePrices);
+      const price = parsedPrices[userCurrency] || parsedPrices.USD;
+
+      return {
+        ...courseData,
+        localizedPrice: price,
+        currency: countryCurrencyTranslatedMap[userCurrency]
       };
-  
-      const userCurrency = getUserCurrency(req);
+    });
 
-    const studentProjects = await StudentProject.findAll();
+    const coursesUnder12 = localizedCourses.filter(course => course.category === 'under_12');
+    const courses12AndAbove = localizedCourses.filter(course => course.category === 'above_12');
 
-    Course.findAll()
-      .then(courses => {
-        // Add currency and localized price to each course
-        const localizedCourses = courses.map(course => {
-          const courseData = course.toJSON();
-          const parsedPrices = JSON.parse(courseData.coursePrices);
-          const price = parsedPrices[userCurrency] || parsedPrices.USD;
-          // console.log(courseData.coursePrices["EGP"]);  // Check if EGP value exists
-
-          // console.log(courseData);
-          // console.log(price);
-
-
-          return {
-            ...courseData,
-            localizedPrice: price,
-            currency: countryCurrencyTranslatedMap[userCurrency]
-          };
-        });
-  
-        res.render('school/index', {
-          title: "الصفحة الرئيسية",
-          studentProjects,
-          errorMessage: errorMsg,
-          successMessage: successMessage,
-          path: 'index',
-          courses: localizedCourses
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        res.status(500).send('Error loading courses');
-      });
-}
+    res.render('school/index', {
+      title: req.__('title.home'),
+      studentProjects,
+      errorMessage: errorMsg,
+      successMessage: successMessage,
+      path: 'index',
+      coursesUnder12,
+      courses12AndAbove
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error loading courses');
+  }
+};
 
 exports.getRegistrationForm = (req, res, next) => {
   const courseId = req.params.courseId;
   const user = req.session.user;
-  
 
   Course.findByPk(courseId)
     .then(course => {
@@ -77,23 +66,20 @@ exports.getRegistrationForm = (req, res, next) => {
         return res.redirect('/');
       }
       res.render('school/course_registration', {
-        title: " التسجيل",
-
+        title: req.__('title.registration'),
         errorMessage: '',
         course: course,
         user: user,
         errors: [],
         path: 'registration',
-        
         oldInput: {
           studentFirstName: user.firstName,
           studentLastName: user.lastName,
           studentBirthDate: user.birthDate,
           phoneNumber: user.phoneNumber,
           couponUsed: '',
-          notes: '',        
+          notes: '',
         }
-
       });
     })
     .catch(err => {
@@ -101,7 +87,6 @@ exports.getRegistrationForm = (req, res, next) => {
       res.redirect('/');
     });
 };
-
 
 const ALIVE_STATUSES = ['pending', 'accepted', 'awaiting_payment', 'in_progress'];
 
@@ -126,8 +111,7 @@ exports.postRegister = async (req, res, next) => {
         course,
         user,
         path: 'registration',
-        title: "التسجيل ",
-
+        title: req.__('title.registration'),
         errors: errors.array(),
         oldInput: {
           studentFirstName,
@@ -161,21 +145,17 @@ exports.postRegister = async (req, res, next) => {
       const coupon = await Coupon.findOne({
         where: where(fn('LOWER', col('code')), cleanedCoupon.toLowerCase())
       });
-      console.log(coupon);
-      console.log("coupon");
       if (coupon && coupon.existingStudents < coupon.maxStudents && new Date() < new Date(coupon.lastDate)) {
         discount = coupon.salePercentage;
         coupon.existingStudents += 1;
         await coupon.save();
       } else {
         return res.render('school/course_registration', {
-          title: " التسجيل",
-
-          errorMessage: "الكوبون المدخل غير صحيح",
+          title: req.__('title.registration'),
+          errorMessage: req.__('messages.invalid_coupon'),
           course,
           user,
           path: 'registration',
-
           errors: [],
           oldInput: {
             studentFirstName,
@@ -188,25 +168,23 @@ exports.postRegister = async (req, res, next) => {
         });
       }
     }
-    
-    var finalPrice  = basePrice;
-    if(course.courseSale) {
+
+    let finalPrice = basePrice;
+    if (course.courseSale) {
       finalPrice = basePrice - (basePrice * (course.courseSale / 100));
     }
     finalPrice = finalPrice - (finalPrice * (discount / 100));
-    finalPrice  = Math.floor(finalPrice);
+    finalPrice = Math.floor(finalPrice);
 
-    // 1. Check if user is already registered
     const existingRegistration = await Registration.findOne({
       where: { userId: user.id, courseId }
     });
 
     if (existingRegistration) {
       if (ALIVE_STATUSES.includes(existingRegistration.registrationStatus)) {
-        req.flash('error', 'لقد قمت بالفعل بالتسجيل في هذا الكورس.');
+        req.flash('error', req.__('messages.already_registered'));
         return res.redirect('/');
       } else {
-        // 2. Update the existing expired registration
         existingRegistration.firstName = studentFirstName;
         existingRegistration.lastName = studentLastName;
         existingRegistration.birthDate = studentBirthDate;
@@ -218,13 +196,11 @@ exports.postRegister = async (req, res, next) => {
         existingRegistration.registrationStatus = 'pending';
         existingRegistration.paidAmount = 0;
         await existingRegistration.save();
-        console.log("Done");
-        req.flash('success', 'تم تحديث بيانات التسجيل وإعادة التقديم.');
+        req.flash('success', req.__('messages.registration_updated'));
         return res.redirect('/');
       }
     }
 
-    // 3. No previous registration, create new
     await Registration.create({
       userId: user.id,
       courseId,
@@ -238,8 +214,8 @@ exports.postRegister = async (req, res, next) => {
       notes: notes || null
     });
 
-    req.flash('success', 'تم تسجيل الطالب بنجاح');
-    sendNotification(phoneNumber,course.title,studentFirstName,studentLastName);
+    req.flash('success', req.__('messages.registration_success'));
+    sendNotification(phoneNumber, course.title_en, studentFirstName, studentLastName);
     res.redirect('/account');
 
   } catch (err) {
@@ -248,38 +224,30 @@ exports.postRegister = async (req, res, next) => {
   }
 };
 
+async function sendNotification(phoneNumber, courseName, firstName, Lastname) {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'info@alphacodeedu.com',
+      pass: '9rqPVCXUCVJ9'
+    }
+  });
 
-async function  sendNotification(phoneNumber, courseName, firstName, Lastname)  {
-      const transporter = nodemailer.createTransport({
-          host: "smtp.zoho.com",
-            port: 465,
-  secure: true,
-          //service: 'gmail',
-          auth: {
-          // user: 'hotreloadalkt@gmail.com',
-          // pass: 'iefj kqpw ehbe xsox'
-          user: 'info@alphacodeedu.com',
-          pass: '9rqPVCXUCVJ9'
-          },
-          // tls: {
-          //     rejectUnauthorized: false
-          //   }
-      });
-  
-      await transporter.sendMail({
-          from: 'Alpha Code info@alphacodeedu.com',
-          to: 'adelkutait8@gmail.com',
-          subject: 'Password Reset',
-          html: `<div style="direction: rtl; font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; background-color: #f9f9f9;">
-                  <h2 style="color: #4a90e2;">  قام طالب بتسجيل بكورس</h2>
-                  <p>مرحبا ,</p>
-                  <p> في التسجيل بكورس ${courseName} قام الطالب ${firstName} ${Lastname}</p>
-
-                  <p style="text-align: center;">
-                     رقم الهاتف ${phoneNumber}
-                  </p>
-                  </div>`
-      });
+  await transporter.sendMail({
+    from: 'Alpha Code info@alphacodeedu.com',
+    to: 'adelkutait8@gmail.com',
+    subject: 'Password Reset',
+    html: `<div style="direction: rtl; font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; background-color: #f9f9f9;">
+            <h2 style="color: #4a90e2;">قام طالب بالتسجيل بكورس</h2>
+            <p>مرحبا ,</p>
+            <p>في التسجيل بكورس ${courseName} قام الطالب ${firstName} ${Lastname}</p>
+            <p style="text-align: center;">
+               رقم الهاتف ${phoneNumber}
+            </p>
+           </div>`
+  });
 }
 
 function getUserCurrency(req) {
@@ -297,12 +265,11 @@ function getUserCurrency(req) {
   return countryCurrencyMap[country] || 'USD';
 }
 
-
 exports.getAccount = async (req, res) => {
   const user = req.session.user;
   let errorMsg = req.flash('error');
   if (errorMsg.length === 0) {
-   errorMsg = undefined;
+    errorMsg = undefined;
   }
   let successMessage = req.flash('success');
   if (successMessage.length === 0) {
@@ -310,12 +277,12 @@ exports.getAccount = async (req, res) => {
   }
 
   const statusTranslations = {
-    pending: 'قيد الانتظار',
-    accepted: 'مقبول',
-    rejected: 'مرفوض',
-    canceled: 'ملغي',
-    awaiting_payment: 'بانتظار الدفع',
-    in_progress: 'قيد الدراسة'
+    pending: req.__('status.pending'),
+    accepted: req.__('status.accepted'),
+    rejected: req.__('status.rejected'),
+    canceled: req.__('status.canceled'),
+    awaiting_payment: req.__('status.awaiting_payment'),
+    in_progress: req.__('status.in_progress')
   };
 
   try {
@@ -331,12 +298,10 @@ exports.getAccount = async (req, res) => {
     }));
 
     res.render('school/account', {
-      title: " الحساب",
-
+      title: req.__('title.profile'),
       errorMessage: errorMsg,
       user,
       path: 'account',
-
       registrations: translatedRegistrations,
       successMessage: successMessage
     });
@@ -345,7 +310,6 @@ exports.getAccount = async (req, res) => {
     res.redirect('/');
   }
 };
-
 
 exports.postEditAccount = async (req, res) => {
   const { firstName, lastName, birthDate, phoneNumber } = req.body;
@@ -363,9 +327,19 @@ exports.postEditAccount = async (req, res) => {
     user.birthDate = birthDate;
     user.phoneNumber = phoneNumber;
     await user.save();
-    req.session.user = user; // update session
+    req.session.user = user;
   }
-  req.flash('success', 'تم تعديل المعلومات الملف الشخصي');
+  req.flash('success', req.__('messages.profile_updated'));
 
   res.redirect('/account');
+};
+
+
+exports.postChangeLanguage = (req, res) => {
+  const newLang = req.body.lang;
+  res.cookie('lang', newLang, { maxAge: 900000, httpOnly: true });
+  req.setLocale(newLang);
+
+  const backURL = req.header('Referer') || '/';
+  res.redirect(backURL);
 };

@@ -1,123 +1,95 @@
 <%- include('../includes/head.ejs') %>
+</head>
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  .left-side {
+    background: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)),
+    url("/images/hero.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
 
-  </head>
-  <style>
-    html,
-    body {
-      height: 100%;
-    }
-    .left-side {
-      background: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)),
-      url("/images/hero.jpg");
-      
-      background-size: cover;
-      background-position: center;
-    }
-    .right-side {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px;
-    }
+  select,
+  option {
+    font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
+  }
+</style>
+<body>
+  <% if (errorMessage) { %>
+    <div id="flash-message" class="alert alert-danger toast-message">
+      <%= errorMessage %>
+    </div>
+  <% } %>
 
-    select,
-    option {
-      font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
-    }
-  </style>
-  <body>
-    <% if (errorMessage) { %>
-      <div id="flash-message" class="alert alert-danger toast-message">
-        <%= errorMessage %>
-      </div>
-      <% } %>
-    <div class="container-fluid h-100">
-      <div class="row h-100 justify-content-center">
-        <!-- Left side (image) -->
-        <div class="col-lg-6 col-md-10 right-side">
-          <img src="/images/school_logo1.png" class="school-logo mb-4">
-          <div class="card shadow p-4 w-100" style="max-width: 500px">
-            <h3 class="text-center mb-4">تسجيل الدخول</h3>
+  <div class="container-fluid h-100">
+    <div class="row h-100 justify-content-center">
+      <!-- Right side (form) -->
+      <div class="col-lg-6 col-md-10 right-side">
+        <img src="/images/school_logo1.png" class="school-logo mb-4">
+        <div class="card shadow p-4 w-100" style="max-width: 500px">
+          <h3 class="text-center mb-4"><%= __('login.title') %></h3>
 
-            <form action="/login" method="POST">
-              <!-- <div class="mb-3">
-                <label class="form-label">رقم الهاتف</label>
-                <div class="input-group" style="direction: ltr">
-                  <select
-                  class="form-select"
-                  style="max-width: 150px; border-radius: 5px"
-                  name="phoneKey"
-                >
-                  <% countryCodes.forEach(code => { %>
-                    <option value="<%= code.code %>" <%= oldInput.phoneKey === code.code ? 'selected' : '' %>>
-                      <%= code.code %> <%= code.name %>
-                    </option>
-                  <% }); %>
-                </select>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value="<%= oldInput.phoneNumber %>"
-                    class="form-control me-2 <%= errors.find(e => e.path === 'phoneNumber') ? 'invalid' : '' %>"
-                    style="direction: rtl"
-                    placeholder="أدخل رقم الهاتف"
-                    pattern="[0-9]*"
-                    inputmode="numeric"
-                    minlength="7"
-                    maxlength="12"
-                  />
-                </div>
-              </div> -->
-              <div class="mb-3">
-                <label class="form-label">البريد الإلكتروني</label>
-                <input
-                  type="email"
-                  value="<%= oldInput.email %>"
-                  name="email"
-                  class="form-control <%= errors.find(e => e.path === 'email') ? 'invalid' : '' %>"
-                  style="direction: rtl"
-                  placeholder="أدخل البريد الإلكتروني"
+          <form action="/login" method="POST">
+            <div class="mb-3">
+              <label class="form-label"><%= __('login.email_label') %></label>
+              <input
+                type="email"
+                value="<%= oldInput.email %>"
+                name="email"
+                class="form-control <%= errors.find(e => e.path === 'email') ? 'invalid' : '' %>"
+                placeholder="<%= __('login.email_placeholder') %>"
+              />
+            </div>
 
-                />
-              </div>
-              <div class="mb-3">
-                <label class="form-label">كلمة المرور</label>
-                <input
-                  type="password"
-                  name="password"
-                  value="<%= oldInput.password %>"
-                  class="form-control <%= errors.find(e => e.path === 'password') ? 'invalid' : '' %>"
-                  placeholder="أدخل كلمة المرور"
-                />
-              </div>
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary" style="background-color: #09A6AF;">
-                  تسجيل الدخول
-                </button>
-              </div>
-              <div class="text-center mt-3">
-                <small>لا تملك حساب ؟ <a href="/signup" style="color: #09A6AF;">أنشئ حساب</a></small>
-              </div>
-              <div class="text-center mt-1">
-                <small> هل نسيت كلمة المرور ؟ <a href="/reset-password" style="color: #09A6AF;"> إعادة تعيين</a></small>
-              </div>
-            </form>
-          </div>
+            <div class="mb-3">
+              <label class="form-label"><%= __('login.password_label') %></label>
+              <input
+                type="password"
+                name="password"
+                value="<%= oldInput.password %>"
+                class="form-control <%= errors.find(e => e.path === 'password') ? 'invalid' : '' %>"
+                placeholder="<%= __('login.password_placeholder') %>"
+              />
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary" style="background-color: #09A6AF;">
+                <%= __('login.submit_button') %>
+              </button>
+            </div>
+
+            <div class="text-center mt-3">
+              <small><%= __('login.no_account') %> <a href="/signup" style="color: #09A6AF;"><%= __('login.create_account') %></a></small>
+            </div>
+
+            <div class="text-center mt-1">
+              <small><%= __('login.forgot_password') %> <a href="/reset-password" style="color: #09A6AF;"><%= __('login.reset_password') %></a></small>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <!-- Right side (form) -->
-        <div class="col-lg-6 left-side d-none d-lg-block text-center">
-          <div class="d-flex flex-column justify-content-center align-items-center h-100">
-            <img src="/images/school_logo1.png" class="school-logo-lg mb-5">
-            <h2 class=" fw-semibold text-white">
-              
-              رحلة برمجية تبدأ <span style="color: #09A6AF">بالأساس</span> وتنتهي <span style="color: #ffd600">بالإحتراف</span>         
-               </h2>
-          </div>
+      <!-- Left side (image/slogan) -->
+      <div class="col-lg-6 left-side d-none d-lg-block text-center">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+          <img src="/images/school_logo1.png" class="school-logo-lg mb-5">
+          <h2 class="fw-semibold text-white">
+            <%- __('login.slogan') %>
+          </h2>
         </div>
       </div>
     </div>
-    <script src="/js/flash-message.js"></script>
-  </body>
+  </div>
+  <script src="/js/flash-message.js"></script>
+</body>
 </html>

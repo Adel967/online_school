@@ -1,0 +1,193 @@
+{
+  "nav": {
+  "home": "Home",
+  "whatWeOffer": "What We Offer",
+  "whyUs": "Why Our Academy?",
+  "learningPaths": "Learning Paths",
+  "studentProjects": "Student Projects",
+  "myAccount": "My Account",
+  "login": "Login",
+  "contactUs": "Contact Us"
+  },
+
+  
+  "hero": {
+    "journey": "Build with <span style='color: #00bfa6'>logic</span>, shine with <span style='color: #ffd600'>creativity</span>",
+    "live_courses": "Enjoyable live courses to learn programming",
+    "book_you_session": "Book your free session",
+    "contactUs": "Contact us now"
+
+  },
+
+
+  "topics": {
+  "whatWeOffer": "What We Offer",
+  "learnProgramming": "Learn programming in a fun and practical way",
+  "gameProgramming": "Game Programming",
+  "mobileApplications": "Mobile Applications",
+  "programmingFundamentals": "Programming Fundamentals",
+  "websiteDesign": "Website Design"
+  },
+
+  "whyAcademy": {
+    "title": "Why Our Academy?",
+    "description": "Discover the features that make us the ideal choice for learning programming",
+    "features": {
+      "paymentTitle": "Flexible Payment Options",
+      "paymentText": "Try the first session of any course for free",
+      "agesTitle": "Tailored Learning for All Ages",
+      "agesText": "Courses designed for different age groups with strong programming foundations.",
+      "practicalTitle": "Hands-On Learning",
+      "practicalText": "We build real projects and games using Scratch to make learning fun and effective.",
+      "trainersTitle": "Expert and Supportive Instructors",
+      "trainersText": "Experienced instructors who ensure a simplified and engaging learning experience.",
+      "scheduleTitle": "Flexible Schedules & Live Classes",
+      "scheduleText": "Interactive live sessions with timings that suit everyone.",
+      "futureTitle": "Preparing Students for the Future",
+      "futureText": "We develop logical thinking, problem-solving, and creativity for future readiness."
+    }
+  },
+
+   "footer": {
+    "description": "Our platform aims to teach programming to kids and beginners in a fun and interactive way.",
+    "quickLinksTitle": "Quick Links",
+    "links": {
+      "home": "Home",
+      "whatWeOffer": "What We Offer",
+      "paths": "Our Learning Tracks",
+      "projects": "Student Projects"
+    },
+    "contactTitle": "Contact Us",
+    "notSpecified": "Not specified",
+    "copyright": "All rights reserved"
+  },
+
+  "courses": {
+    "our_track": "Our Learning Tracks",
+    "under_12": "Our learning tracks for ages 7 to 12",
+    "above_12": "Our learning tracks for ages 12 and above",
+    "course_image_alt": "Course image",
+    "lessons_over_weeks": "lessons over {{weeks}} weeks",
+    "one_student": "One student",
+    "two_students": "Two students",
+    "x_students": "{{count}} students",
+    "per_group": "per group",
+    "age_group": "Age group:",
+    "years": "years",
+    "per_lesson": "per lesson",
+    "register_now": "Register Now",
+    "7_to_12": "7 to 12 years",
+    "12_to_18": "12 to 18 years"
+  },
+
+  "login": {
+    "title": "Login",
+    "email_label": "Email",
+    "email_placeholder": "Enter your email",
+    "password_label": "Password",
+    "password_placeholder": "Enter your password",
+    "submit_button": "Login",
+    "no_account": "Don't have an account?",
+    "create_account": "Create one",
+    "forgot_password": "Forgot your password?",
+    "reset_password": "Reset",
+    "slogan": "A coding journey that starts <span style=\"color: #09A6AF\">with the basics</span> and ends <span style=\"color: #ffd600\">with mastery</span>"
+  },
+
+   "signup": {
+    "create_account": "Create New Account",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email Address",
+    "phone": "Phone Number (with country key)",
+    "birth_date": "Date of Birth",
+    "password": "Password",
+    "confirm_password": "Confirm Password",
+    "signup_button": "Sign Up",
+    "have_account": "Already have an account?",
+    "login_link": "Login",
+    "first_name_placeholder": "Enter first name",
+    "last_name_placeholder": "Enter last name",
+    "email_placeholder": "Enter email address",
+    "phone_placeholder": "Enter phone number",
+    "password_placeholder": "Create a password",
+    "confirm_password_placeholder": "Re-enter your password",
+    "slogan_part1": "A coding journey that starts",
+    "slogan_part2": "with basics",
+    "slogan_part3": "and ends",
+    "slogan_part4": "with mastery"
+  },
+
+  "reset_password": {
+    "title": "Reset Password",
+    "email_placeholder": "Enter the account email address",
+    "send_link": "Send Activation Link"
+  },
+
+  "account": {
+    "profile": "Profile",
+    "logout": "Logout",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "birth_date": "Birth Date",
+    "email": "Email",
+    "email_placeholder": "Enter your email",
+    "phone_number": "Phone Number",
+    "save_changes": "Save Changes",
+    "registered_courses": "Registered Courses",
+    "no_courses": "You have not registered for any courses yet.",
+    "status": "Status",
+    "registration_date": "Registration Date",
+    "final_price": "Final Price",
+    "amount_paid": "Amount Paid"
+  },
+
+  "course": {
+    "register_title": "Complete Registration",
+    "student_first_name": "Student First Name",
+    "student_last_name": "Student Last Name",
+    "student_birthdate": "Student Date of Birth",
+    "phone_number": "Contact Phone Number",
+    "coupon_optional": "Coupon (Optional)",
+    "notes_optional": "Notes (Optional)",
+    "placeholder_first_name": "Enter student's first name",
+    "placeholder_last_name": "Enter student's last name",
+    "placeholder_phone": "Enter phone number",
+    "placeholder_coupon": "Enter coupon code if available",
+    "placeholder_notes": "Write any notes here...",
+    "submit_button": "Register"
+  },
+
+  "projects": {
+    "section_title": "Our Students' Achievements",
+    "section_subtitle": "Real creations made by our students during their learning journey with us",
+    "no_projects": "No student projects available",
+    "view_project": "View Project"
+  },
+
+  "title": {
+    "home": "Home Page",
+    "login": "Login page",
+    "sign_up": "Sign up Page",
+    "profile": "Profile",
+    "registration": "Registration Page",
+    "reset": "Reset password"
+  },
+
+    "messages": {
+    "already_registered": "You have already registered for this course.",
+    "registration_updated": "Your registration details have been updated and resubmitted.",
+    "registration_success": "The student has been successfully registered.",
+    "invalid_coupon": "The entered coupon is invalid.",
+    "profile_updated": "Profile information has been updated."
+  },
+  "status": {
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "canceled": "Canceled",
+    "awaiting_payment": "Awaiting Payment",
+    "in_progress": "In Progress"
+  }
+
+}

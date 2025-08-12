@@ -39,7 +39,7 @@ exports.getLogin = (req, res, next) => {
 
     res.render(
         'auth/login', {
-            title: " تسجيل الدخول",
+            title:  req.__('title.login'),
 
         errorMessage: errorMsg,
         oldInput: {
@@ -55,7 +55,7 @@ exports.getLogin = (req, res, next) => {
 
 exports.postLogin = (req, res, next) => {
     const phoneNumber = req.body.phoneNumber;
-    const phoneKey = req.body.phoneKey;
+    //const phoneKey = req.body.phoneKey;
     const email = req.body.email;
 
     const password = req.body.password;
@@ -66,14 +66,14 @@ exports.postLogin = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(422).render(
             'auth/login', {
-                title: " تسجيل الدخول",
+                title:  req.__('title.login'),
 
             errorMessage: errors.array()[0].msg,
             oldInput: {
                 // phoneNumber: phoneNumber,
                 // password: password,
                 email: email,
-                phoneKey: phoneKey
+                //phoneKey: phoneKey
             },
             errors: errors.array(),
             countryCodes
@@ -131,7 +131,7 @@ exports.getSignUp = (req, res, next) => {
 
     res.render(
         'auth/signup', {
-            title: "  إنشاء حساب",
+            title:  req.__('title.sign_up'),
 
         errorMessage: errorMsg,
         oldInput: {
@@ -139,7 +139,7 @@ exports.getSignUp = (req, res, next) => {
             lastName: '',
             email: '',
             phoneNumber: '',
-            phoneKey: '',
+            //phoneKey: '',
             birthDate: '',
             password: '',
             confirmPassword: ''
@@ -155,7 +155,7 @@ exports.postSignUp = (req, res, next) => {
     const lastName = req.body.lastName;
     const email = req.body.email;
     const phoneNumber = req.body.phoneNumber;
-    const phoneKey = req.body.phoneKey;
+    // const phoneKey = req.body.phoneKey;
     const birthDate = req.body.birthDate;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
@@ -165,14 +165,14 @@ exports.postSignUp = (req, res, next) => {
     if (!errors.isEmpty()) {
         return res.status(422).render(
             'auth/signup', {
-                title: "  إنشاء حساب",
+                title:  req.__('title.sign_up'),
 
             errorMessage: errors.array()[0].msg,
             oldInput: {
                 firstName: firstName,
                 lastName: lastName,
                 phoneNumber: phoneNumber,
-                phoneKey: phoneKey,
+                // phoneKey: phoneKey,
                 birthDate: birthDate,
                 password: password,
                 confirmPassword: confirmPassword
@@ -188,7 +188,7 @@ exports.postSignUp = (req, res, next) => {
             if (user) {
                 return res.status(422).render(
                     'auth/signup', {
-                        title: "  إنشاء حساب",
+                        title:  req.__('title.sign_up'),
 
                     errorMessage: "البريد الإلكتروني هذا مستعمل",
                     oldInput: {
@@ -196,7 +196,7 @@ exports.postSignUp = (req, res, next) => {
                         lastName: lastName,
                         email: email,
                         phoneNumber: phoneNumber,
-                        phoneKey: phoneKey,
+                        // phoneKey: phoneKey,
                         birthDate: birthDate,
                         password: password,
                         confirmPassword: confirmPassword
@@ -212,7 +212,7 @@ exports.postSignUp = (req, res, next) => {
                             firstName: firstName,
                             lastName: lastName,
                             email: email,
-                            phoneNumber: phoneKey + phoneNumber,
+                            // phoneNumber: phoneKey + phoneNumber,
                             birthDate: birthDate,
                             password: hashedPassword
                         })
@@ -241,7 +241,7 @@ exports.getLogout = (req, res, next) => {
 
 
 exports.getResetPasswordForm = (req, res) => {
-    res.render('auth/reset-password-request', {title:"إعادة تعيين كلمة مرور" ,error: null, oldInput: {} });
+    res.render('auth/reset-password-request', {title: req.__('title.reset') ,error: null, oldInput: {} });
 };
 
 
@@ -251,7 +251,7 @@ exports.postResetPasswordEmail = async (req, res) => {
     const user = await User.findOne({ where: { email } });
     if (!user) {
         return res.render('auth/reset-password-request', {
-            title:"إعادة تعيين كلمة مرور",
+            title: req.__('title.reset'),
             error: "هذا البريد الإلكتروني غير موجود",
             oldInput: { email }
         });
@@ -323,7 +323,7 @@ exports.getNewPasswordForm = async (req, res) => {
   
     if (!user) return res.send('Token is invalid or expired.');
   
-    res.render('auth/new-password', { title: 'إعادة التعيين',userId: user.id.toString(), token, error: null });
+    res.render('auth/new-password', { title:  req.__('title.reset'),userId: user.id.toString(), token, error: null });
 };
 
 exports.postNewPassword = async (req, res) => {

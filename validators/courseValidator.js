@@ -1,14 +1,28 @@
 const { body } = require('express-validator');
 
 exports.createCourseValidation = [
-  body('title')
+  body('title_ar')
     .notEmpty()
     .withMessage('يجب إدخال عنوان الدورة')
     .bail()
     .isLength({ min: 3 })
     .withMessage('عنوان الدورة يجب أن يكون أكثر من 3 أحرف'),
 
-  body('description')
+   body('title_en')
+    .notEmpty()
+    .withMessage('بال يجب إدخال عنوان الدورة')
+    .bail()
+    .isLength({ min: 3 })
+    .withMessage('عنوان الدورة يجب أن يكون أكثر من 3 أحرف'),   
+
+  body('description_ar')
+    .notEmpty()
+    .withMessage('يجب إدخال وصف الدورة')
+    .bail()
+    .isLength({ min: 10 })
+    .withMessage('وصف الدورة يجب أن يكون أكثر من 10 أحرف'),
+
+  body('description_en')
     .notEmpty()
     .withMessage('يجب إدخال وصف الدورة')
     .bail()
@@ -28,6 +42,13 @@ exports.createCourseValidation = [
     .bail()
     .isInt({ min: 1 })
     .withMessage('عدد الجلسات يجب أن يكون رقماً صحيحاً أكبر من 0'),
+
+  body('order')
+    .notEmpty()
+    .withMessage('يجب إدخال الترتيب')
+    .bail()
+    .isInt({ min: 1 })
+    .withMessage(' الترتيب يجب أن يكون رقماً صحيحاً أكبر من 0'),
 
   body('weeksNumber')
     .notEmpty()

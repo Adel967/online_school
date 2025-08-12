@@ -20,12 +20,20 @@
       
             
               <div class="mb-3">
-                <label>العنوان</label>
-                <input type="text" name="title" class="form-control" value="<%= project?.title || '' %>">
+                <label>العنوان باللغة العربية</label>
+                <input type="text" name="title_ar" class="form-control" value="<%= project?.title_ar || '' %>">
               </div>
               <div class="mb-3">
-                <label>شرح قصير</label>
-                <textarea name="description" class="form-control"><%= project?.description || '' %></textarea>
+                <label>العنوان باللغة الإنجليزية</label>
+                <input type="text" name="title_en" class="form-control" value="<%= project?.title_en || '' %>">
+              </div>
+              <div class="mb-3">
+                <label>شرح قصير بالعربية</label>
+                <textarea name="description_ar" class="form-control"><%= project?.description_en || '' %></textarea>
+              </div>
+                    <div class="mb-3">
+                <label>شرح قصير بالإنجليزية</label>
+                <textarea name="description_en" class="form-control"><%= project?.description_en || '' %></textarea>
               </div>
               <div class="mb-3">
                 <label> لينك صورة</label>

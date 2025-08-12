@@ -18,7 +18,7 @@ exports.postAddProject = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.render('admin/studentProjects/form', {
       title: "  إضافة مشروع طالب ",
-
+errorMessage:  errors.array()[0].msg  ,
       path: "studentProjects",
       project: req.body,
       errors: errors.array()[0].msg    
@@ -44,7 +44,7 @@ exports.postEditProject = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.render('admin/studentProjects/form', {
       title: "  تعديل مشروع طلاب ",
-
+      errorMessage:  errors.array()[0].msg  ,
       path: "studentProjects",
       project: { ...project.dataValues, ...req.body },
       errors: errors.array()

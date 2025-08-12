@@ -1,166 +1,157 @@
 <%- include('../includes/head.ejs') %>
 
-    <style>
-      html,
-      body {
-        height: 100%;
-      }
-      .left-side {
-        background: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)),
-        url("/images/hero.jpg");
-        background-size: cover;
-        background-position: center;
-      }
-      .right-side {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-      }
-
-      select,
-      option {
-        font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
-      }
-    </style>
-  </head>
-  <body>
-    <% if (errorMessage) { %>
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  .left-side {
+    background: linear-gradient(rgba(0,0,0, 0.7), rgba(0,0,0, 0.7)),
+    url("/images/hero.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  select,
+  option {
+    font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
+  }
+</style>
+</head>
+<body>
+  <% if (errorMessage) { %>
     <div id="flash-message" class="alert alert-danger toast-message"><%= errorMessage %></div>
-    <% } %>
-    <div class="container-fluid h-100">
-      <div class="row h-100 justify-content-center">
-        <!-- Left side (image) -->
-        <div class="col-lg-6 col-md-10 right-side">
-          <!-- fixed height container -->
-          <img src="/images/school_logo1.png" class="school-logo mb-4">
+  <% } %>
 
-          <div class="card shadow p-4 w-100" style="max-width: 500px">
-            <h3 class="text-center mb-4">تسجيل حساب جديد</h3>
-            <form action="/signup" method="POST">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">الاسم الأول</label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value="<%= oldInput.firstName %>"
-                    class="form-control <%= errors.find(e => e.path === 'firstName') ? 'invalid' : '' %>"
-                    placeholder="الاسم الأول"
-                  />
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">الاسم الأخير</label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value="<%= oldInput.lastName %>"
-                    class="form-control <%= errors.find(e => e.path === 'lastName') ? 'invalid' : '' %>"
-                    placeholder="الاسم الأخير"
-                  />
-                </div>
-              </div>
+  <div class="container-fluid h-100">
+    <div class="row h-100 justify-content-center">
+      <!-- Form Side -->
+      <div class="col-lg-6 col-md-10 right-side">
+        <img src="/images/school_logo1.png" class="school-logo mb-4">
 
-              <div class="mb-3">
-                <label class="form-label">البريد الإلكتروني</label>
+        <div class="card shadow p-4 w-100" style="max-width: 500px">
+          <h3 class="text-center mb-4"><%= __('signup.create_account') %></h3>
+          <form action="/signup" method="POST">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label"><%= __('signup.first_name') %></label>
                 <input
-                  type="email"
-                  value="<%= oldInput.email %>"
-                  name="email"
-                  class="form-control <%= errors.find(e => e.path === 'email') ? 'invalid' : '' %>"
-                  style="direction: rtl"
-                  placeholder="أدخل البريد الإلكتروني"
+                  type="text"
+                  name="firstName"
+                  value="<%= oldInput.firstName %>"
+                  class="form-control <%= errors.find(e => e.path === 'firstName') ? 'invalid' : '' %>"
+                  placeholder="<%= __('signup.first_name_placeholder') %>"
                 />
               </div>
-
-              <div class="mb-3">
-                <label class="form-label">رقم الهاتف</label>
-                <div class="input-group" style="direction: ltr">
-                  <select
-                  class="form-select"
-                  style="max-width: 150px; border-radius: 5px"
-                  name="phoneKey"
-                >
-                  <% countryCodes.forEach(code => { %>
-                    <option value="<%= code.code %>" <%= oldInput.phoneKey === code.code ? 'selected' : '' %>>
-                      <%= code.code %> <%= code.name %>
-                    </option>
-                  <% }); %>
-                </select>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value="<%= oldInput.phoneNumber %>"
-                    class="form-control me-2 <%= errors.find(e => e.path === 'phoneNumber') ? 'invalid' : '' %>"
-                    style="direction: rtl"
-                    placeholder="أدخل رقم الهاتف"
-                    pattern="[0-9]*"
-                    inputmode="numeric"
-                    minlength="7"
-                    maxlength="12"
-                  />
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label">تاريخ الميلاد</label>
+              <div class="col-md-6 mb-3">
+                <label class="form-label"><%= __('signup.last_name') %></label>
                 <input
-                  type="date"
-                  value="<%= oldInput.birthDate %>"
-                  name="birthDate"
-                  class="form-control <%= errors.find(e => e.path === 'birthDate') ? 'invalid' : '' %>"
-                  style="direction: ltr"
+                  type="text"
+                  name="lastName"
+                  value="<%= oldInput.lastName %>"
+                  class="form-control <%= errors.find(e => e.path === 'lastName') ? 'invalid' : '' %>"
+                  placeholder="<%= __('signup.last_name_placeholder') %>"
                 />
               </div>
+            </div>
 
-              <div class="mb-3">
-                <label class="form-label">كلمة المرور</label>
+            <div class="mb-3">
+              <label class="form-label"><%= __('signup.email') %></label>
+              <input
+                type="email"
+                value="<%= oldInput.email %>"
+                name="email"
+                class="form-control <%= errors.find(e => e.path === 'email') ? 'invalid' : '' %>"
+                placeholder="<%= __('signup.email_placeholder') %>"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label"><%= __('signup.phone') %></label>
+              <div class="input-group" >
                 <input
-                  type="password"
-                  name="password"
-                  value="<%= oldInput.password %>"
-                  class="form-control <%= errors.find(e => e.path === 'password') ? 'invalid' : '' %>"
-                  placeholder="أنشئ كلمة مرور"
+                  type="tel"
+                  name="phoneNumber"
+                  value="<%= oldInput.phoneNumber %>"
+                  class="form-control  <%= errors.find(e => e.path === 'phoneNumber') ? 'invalid' : '' %>"
+                  placeholder="<%= __('signup.phone_placeholder') %>"
+                  pattern="[0-9]*"
+                  inputmode="numeric"
+                  minlength="7"
+                  maxlength="12"
                 />
               </div>
+            </div>
 
-              <div class="mb-3">
-                <label class="form-label">تأكيد كلمة المرور</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value="<%= oldInput.confirmPassword %>"
-                  class="form-control <%= errors.find(e => e.path === 'confirmPassword') ? 'invalid' : '' %>"
-                  placeholder="أعد كتابة كلمة المرور"
-                />
-              </div>
+            <div class="mb-3">
+              <label class="form-label"><%= __('signup.birth_date') %></label>
+              <input
+                type="date"
+                value="<%= oldInput.birthDate %>"
+                name="birthDate"
+                class="form-control <%= errors.find(e => e.path === 'birthDate') ? 'invalid' : '' %>"
+                style="direction: ltr"
+              />
+            </div>
 
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary" style="background-color: #09A6AF;">تسجيل</button>
-              </div>
+            <div class="mb-3">
+              <label class="form-label"><%= __('signup.password') %></label>
+              <input
+                type="password"
+                name="password"
+                value="<%= oldInput.password %>"
+                class="form-control <%= errors.find(e => e.path === 'password') ? 'invalid' : '' %>"
+                placeholder="<%= __('signup.password_placeholder') %>"
+              />
+            </div>
 
-              <div class="text-center mt-3">
-                <small
-                  >هل لديك حساب بالفعل؟ <a href="/login" style="color: #09A6AF;">تسجيل الدخول</a></small
-                >
-              </div>
-            </form>
-          </div>
+            <div class="mb-3">
+              <label class="form-label"><%= __('signup.confirm_password') %></label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value="<%= oldInput.confirmPassword %>"
+                class="form-control <%= errors.find(e => e.path === 'confirmPassword') ? 'invalid' : '' %>"
+                placeholder="<%= __('signup.confirm_password_placeholder') %>"
+              />
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary" style="background-color: #09A6AF;">
+                <%= __('signup.signup_button') %>
+              </button>
+            </div>
+
+            <div class="text-center mt-3">
+              <small>
+                <%= __('signup.have_account') %> 
+                <a href="/login" style="color: #09A6AF;"><%= __('signup.login_link') %></a>
+              </small>
+            </div>
+          </form>
         </div>
+      </div>
 
-        <!-- Right side (form) -->
-        <div class="col-lg-6 left-side d-none d-lg-block text-center">
-          <div class="d-flex flex-column justify-content-center align-items-center h-100">
-            <img src="/images/school_logo1.png" class="school-logo-lg mb-5">
-            <h2 class=" fw-semibold text-white">
-              
-              رحلة برمجية تبدأ <span style="color: #09A6AF">بالأساس</span> وتنتهي <span style="color: #ffd600">بالإحتراف</span>         
-               </h2>
-          </div>
+      <!-- Left side (image and slogan) -->
+      <div class="col-lg-6 left-side d-none d-lg-block text-center">
+        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+          <img src="/images/school_logo1.png" class="school-logo-lg mb-5">
+          <h2 class="fw-semibold text-white">
+            <%= __('signup.slogan_part1') %> 
+            <span style="color: #09A6AF"><%= __('signup.slogan_part2') %></span> 
+            <%= __('signup.slogan_part3') %> 
+            <span style="color: #ffd600"><%= __('signup.slogan_part4') %></span>
+          </h2>
         </div>
       </div>
     </div>
-    <script src="/js/flash-message.js"></script>
-  </body>
+  </div>
+  <script src="/js/flash-message.js"></script>
+</body>
 </html>

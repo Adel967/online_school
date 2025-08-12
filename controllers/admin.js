@@ -38,8 +38,12 @@ exports.getAddCourse = (req, res, next) => {
 
             errorMessage: '',
             oldInput: {
-                title: '',
-                description: '',
+                title_ar: '',
+                title_en: '',
+                description_ar: '',
+                description_en: '',
+                order: '',
+                category: '',
                 sessionNumber: '',
                 weeksNumber: '',
                 studentsPerGroup: '',
@@ -59,8 +63,12 @@ exports.getAddCourse = (req, res, next) => {
 
 exports.postAddCourse = (req, res, next) => {
     const {
-        title,
-        description,
+        title_ar,
+        title_en,
+        description_ar,
+        description_en,
+        order,
+        category,
         sessionNumber,
         weeksNumber,
         studentsPerGroup,
@@ -87,8 +95,12 @@ exports.postAddCourse = (req, res, next) => {
 
             errorMessage: errors.array()[0].msg,
             oldInput: {
-                title,
-                description,
+                title_ar,
+                title_en,
+                description_ar,
+                description_en,
+                order,
+                category,
                 sessionNumber,
                 weeksNumber,
                 studentsPerGroup,
@@ -107,8 +119,12 @@ exports.postAddCourse = (req, res, next) => {
     }
 
     Course.create({
-        title,
-        description,
+        title_ar,
+        title_en,
+        description_ar,
+        description_en,
+        order,
+        category,
         sessionNumber,
         weeksNumber,
         studentsPerGroup,
@@ -128,8 +144,12 @@ exports.postAddCourse = (req, res, next) => {
 
                 errorMessage: 'حدث خطأ أثناء إنشاء الدورة',
                 oldInput: {
-                    title,
-                    description,
+                    title_ar,
+                    title_en,
+                    description_ar,
+                    description_en,
+                    order,
+                    category,
                     sessionNumber,
                     weeksNumber,
                     studentsPerGroup,
@@ -184,8 +204,12 @@ exports.getEditCourse = (req, res, next) => {
 
                         errorMessage: '',
                         oldInput: {
-                            title: course.title,
-                            description: course.description,
+                            title_ar: course.title_ar,
+                            title_en: course.title_en,
+                            description_ar: course.description_ar,
+                            description_en: course.description_en,
+                            order: course.order,
+                            category: course.category,
                             sessionNumber: course.sessionNumber,
                             weeksNumber: course.weeksNumber,
                             studentsPerGroup: course.studentsPerGroup,
@@ -214,8 +238,12 @@ exports.postEditCourse = (req, res, next) => {
     console.log(courseId);
 
     const {
-        title,
-        description,
+        title_ar,
+        title_en,
+        description_ar,
+        description_en,
+        order,
+        category,
         sessionNumber,
         weeksNumber,
         studentsPerGroup,
@@ -244,8 +272,12 @@ exports.postEditCourse = (req, res, next) => {
                     return res.redirect('/admin');
                 }
                 return course.update({
-                    title,
-                    description,
+                    title_ar,
+                    title_en,
+                    description_ar,
+                    description_en,
+                    order,
+                    category,
                     sessionNumber,
                     weeksNumber,
                     studentsPerGroup,

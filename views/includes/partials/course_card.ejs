@@ -1,0 +1,57 @@
+<!-- views/partials/course_card.ejs -->
+<div class="col-lg-3 col-sm-6 col-9 mb-4">
+  <div class="card course-card h-100 w-100" style="width: 18rem">
+    <img src="<%= course.imageUrl %>" class="card-img-top" alt="<%= __('courses.course_image_alt') %>" />
+    <div class="card-body">
+      <h5 class="card-title"><%= currentLocale === 'ar' ? course.title_ar : course.title_en %></h5>
+      <p class="card-text"><%= currentLocale === 'ar' ? course.description_ar : course.description_en %></p>
+    </div>
+    <ul class="list-group list-group-flush " style="padding: 0;">
+      <li class="list-group-item">
+        <%= course.sessionNumber %>  <%= __('courses.lessons_over_weeks', { weeks: course.weeksNumber }) %>
+      </li>
+      <li class="list-group-item">
+        <%= course.studentsPerGroup == 1 
+            ? __('courses.one_student') 
+            : course.studentsPerGroup == 2 
+                ? __('courses.two_students') 
+                : __('courses.x_students', { count: course.studentsPerGroup }) %> 
+        <%= __('courses.per_group') %>
+      </li>
+      <!-- <li class="list-group-item">
+        <%= __('courses.age_group') %> <%= course.studentAgeRange %> <%= __('courses.years') %>
+      </li> -->
+      <li class="list-group-item">
+        <%= __('courses.age_group') %> 
+        <%= course.category === 'under_12' 
+            ? __('courses.7_to_12') 
+            : __('courses.12_to_18') %>
+      </li>
+      <li class="list-group-item d-flex flex-row justify-content-center align-items-center">
+        <div class="d-flex flex-column">
+          <div class="fw-bold">
+            <%= course.courseSale 
+              ? Math.floor(course.localizedPrice - (course.localizedPrice * course.courseSale / 100)) 
+              : course.localizedPrice %> <%= course.currency %>
+          </div>
+          <% if(course.courseSale){ %>
+            <div class="text-muted text-decoration-line-through small">
+              <%= course.localizedPrice %> <%= course.currency %>
+            </div>
+          <% } %>
+        </div>
+        <span class="mx-2">/</span>
+        <span class="text-secondary small">
+          <%= course.courseSale 
+            ? Math.floor((course.localizedPrice - (course.localizedPrice * course.courseSale / 100)) / course.sessionNumber) 
+            : Math.floor(course.localizedPrice / course.sessionNumber) %> <%= __('courses.per_lesson') %> <%= course.currency %>
+        </span>
+      </li>
+      <li class="list-group-item" style="padding: 10px 0">
+        <a href="/course/register/<%= course.id %>" class="card-link btn btn-primary px-5">
+          <%= __('courses.register_now') %>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

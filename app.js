@@ -11,9 +11,29 @@ const bcrypt = require('bcryptjs');
 const flash = require('express-flash');
 const requestIp = require('request-ip');
 const geoip = require('geoip-lite');
+const i18n = require('i18n');
+const cookieParser = require('cookie-parser');
 
 
+i18n.configure({
+  locales: ['en', 'ar'],
+  defaultLocale: 'ar',
+  directory: path.join(__dirname, 'locales'),
+  cookie: 'lang',
+  queryParameter: 'lang',
+  autoReload: true,
+  updateFiles: false,
+  objectNotation: true,
+});
 
+app.use(cookieParser());
+app.use(i18n.init);
+
+app.use((req, res, next) => {
+  res.locals.__ = res.__;
+  res.locals.currentLocale = req.getLocale();
+  next();
+});
 
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);

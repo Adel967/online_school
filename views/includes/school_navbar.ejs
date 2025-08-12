@@ -1,55 +1,61 @@
-
 <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"
-        ><img   src="/images/school_logo1.png" alt=""
-      /></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-5">
-          <li class="nav-item">
-            <a class="nav-link <%= path == 'index' ? 'active' : ''%> " aria-current="page" href="/#hero"
-              >الرئيسية</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#topics">ماذا نقدم</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#why-our-academy">لماذا أكاديميتنا؟ </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#courses"> مساراتنا التعليمية</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#projects"> مشاريع طلابنا</a>
-          </li>
-        </ul>
-        <div class="ms-auto">
-          <% if(isAuthenticated) { %>
-          <a href="/account" class="btn btn-secondary mx-1"> حسابي</a>
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="/images/school_logo1.png" alt="" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-5">
+        <li class="nav-item">
+          <a class="nav-link <%= path == 'index' ? 'active' : ''%>" aria-current="page" href="/#hero">
+            <%= __('nav.home') %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#topics"><%= __('nav.whatWeOffer') %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#why-our-academy"><%= __('nav.whyUs') %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#courses"><%= __('nav.learningPaths') %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#projects"><%= __('nav.studentProjects') %></a>
+        </li>
+      </ul>
+      <div class="<%= currentLocale === 'ar' ? 'ms-auto' : 'me-auto' %> d-flex align-items-center">
+        <% if (isAuthenticated) { %>
+          <a href="/account" class="btn btn-secondary mx-1"><%= __('nav.myAccount') %></a>
+        <% } else { %>
+          <a href="/login" class="btn btn-secondary mx-1"><%= __('nav.login') %></a>
+        <% } %>
+        <a
+          href="https://wa.me/<%= school.phoneNumber %>"
+          target="_blank"
+          class="btn btn-primary mx-1"
+        >
+          <%= __('nav.contactUs') %>
+        </a>
 
-          <% } else {%>
-          <a href="/login" class="btn btn-secondary mx-1">تسجيل الدخول</a>
-
-          <% } %>
-          <a
-            href="https://wa.me/<%= school.phoneNumber%>"
-            target="_blank"
-            class="btn btn-primary mx-1"
-            >تواصل معنا</a
-          >
-        </div>
+        <!-- Language Switch Button -->
+        <form action="/change-language" method="POST" class="d-inline">
+          <input type="hidden" name="lang" value="<%= currentLocale === 'ar' ? 'en' : 'ar' %>">
+          <button type="submit" class="btn btn-outline-dark mx-1">
+            <%= currentLocale === 'ar' ? 'English' : 'العربية' %>
+          </button>
+        </form>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>

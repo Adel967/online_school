@@ -15,6 +15,8 @@ router.get('/account', isAuth,schoolController.getAccount);
 
 router.post('/account/edit',isAuth,accountValidator.accountValidation , schoolController.postEditAccount);
 
+router.post('/change-language', schoolController.postChangeLanguage);
+
 
 
 module.exports = router;

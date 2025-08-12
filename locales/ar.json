@@ -1,0 +1,191 @@
+{
+  "nav":  {
+  "home": "الرئيسية",
+  "whatWeOffer": "ماذا نقدم",
+  "whyUs": "لماذا أكاديميتنا؟",
+  "learningPaths": "مساراتنا التعليمية",
+  "studentProjects": "مشاريع طلابنا",
+  "myAccount": "حسابي",
+  "login": "تسجيل الدخول",
+  "contactUs": "تواصل معنا"
+  },
+
+  "hero": {
+    "journey": "رحلة برمجية تبدأ <span style='color: #00bfa6'>بالأساس</span> وتنتهي <span style='color: #ffd600'>بالإحتراف</span>",
+    "live_courses": "دورات مباشرة وممتعة في تعلم البرمجة",
+    "book_you_session": "إحجز جلستك المجانية الآن",
+    "contactUs": "تواصل معنا الآن"
+
+  },
+
+  "topics": {
+    "whatWeOffer": "ماذا نقدم ؟",
+    "learnProgramming": "تعلم البرمجة بأسلوب ممتع و تتطبيقي",
+    "gameProgramming": "برمجة الألعاب",
+    "mobileApplications": "تطبيقات الجوال",
+    "programmingFund": "أساسيات البرمجة",
+    "websiteDesign": "تصميم المواقع"
+  },
+
+   "whyAcademy": {
+    "title": "لماذا أكاديميتنا؟",
+    "description": "تعرف على المميزات التي تجعلنا الخيار الأمثل لتعلم البرمجة",
+    "features": {
+      "paymentTitle": "مرونة في الدفع",
+      "paymentText": "يمكنك تجربة أول جلسة من أي دورة مجانًا",
+      "agesTitle": "تعليم مخصص لجميع الأعمار",
+      "agesText": "دورات مصممة لتناسب الأعمار المختلفة مع بناء أساس قوي في البرمجة.",
+      "practicalTitle": "تعلم عملي وتطبيقي",
+      "practicalText": "نبني مشاريع وألعاب حقيقية باستخدام Scratch لجعل التعلم ممتعاً وفعالاً.",
+      "trainersTitle": "مدربون محترفون وداعمون",
+      "trainersText": "مدربون بخبرة كبيرة يضمنون تجربة تعليمية مبسطة ومشوقة.",
+      "scheduleTitle": "مواعيد مرنة ودروس مباشرة",
+      "scheduleText": "جلسات تفاعلية مباشرة ومواعيد تناسب الجميع.",
+      "futureTitle": "إعداد الطلاب للمستقبل",
+      "futureText": "ننمي مهارات التفكير المنطقي، حل المشكلات، والإبداع استعداداً للمستقبل."
+    }
+  },
+
+    "footer": {
+    "description": "منصتنا التعليمية تهدف إلى تعليم البرمجة للأطفال والمبتدئين بطريقة ممتعة وتفاعلية.",
+    "quickLinksTitle": "روابط سريعة",
+    "links": {
+      "home": "الرئيسية",
+      "whatWeOffer": "ماذا نقدم",
+      "paths": "مساراتنا التعليمية",
+      "projects": "مشاريع طلابنا"
+    },
+    "contactTitle": "تواصل معنا",
+    "notSpecified": "غير محدد",
+    "copyright": "جميع الحقوق محفوظة"
+  },
+
+    "courses": {
+      "our_track": "مساراتنا التعليمية",
+      "under_12": "مساراتنا التعليمية للأعمار من 7 إلى 12 سنة",
+      "above_12": "مساراتنا التعليمية للأعمار من 12 سنة وأعلى",
+      "course_image_alt": "صورة الدورة",
+      "lessons_over_weeks": "درس خلال {{weeks}} أسابيع",
+      "one_student": "طالب واحد",
+      "two_students": "طالبين",
+      "x_students": "{{count}} طلاب",
+      "per_group": "في كل مجموعة",
+      "age_group": "الفئة العمرية:",
+      "years": "سنة",
+      "per_lesson": "لكل حصة",
+      "register_now": "سجل الآن",
+      "7_to_12": "7 إلى 12 سنة",
+      "12_to_18": "12 إلى 18 سنة"
+    },
+
+    "login": {
+      "title": "تسجيل الدخول",
+      "email_label": "البريد الإلكتروني",
+      "email_placeholder": "أدخل البريد الإلكتروني",
+      "password_label": "كلمة المرور",
+      "password_placeholder": "أدخل كلمة المرور",
+      "submit_button": "تسجيل الدخول",
+      "no_account": "لا تملك حساب ؟",
+      "create_account": "أنشئ حساب",
+      "forgot_password": "هل نسيت كلمة المرور ؟",
+      "reset_password": "إعادة تعيين",
+      "slogan": "رحلة برمجية تبدأ <span style=\"color: #09A6AF\">بالأساس</span> وتنتهي <span style=\"color: #ffd600\">بالإحتراف</span>"
+  },
+
+    "signup": {
+    "create_account": "تسجيل حساب جديد",
+    "first_name": "الاسم الأول",
+    "last_name": "الاسم الأخير",
+    "email": "البريد الإلكتروني",
+    "phone": "رقم الجوال (مع مفتاح الدولة)",
+    "birth_date": "تاريخ الميلاد",
+    "password": "كلمة المرور",
+    "confirm_password": "تأكيد كلمة المرور",
+    "signup_button": "تسجيل",
+    "have_account": "هل لديك حساب بالفعل؟",
+    "login_link": "تسجيل الدخول",
+    "first_name_placeholder": "أدخل الاسم الأول",
+    "last_name_placeholder": "أدخل الاسم الأخير",
+    "email_placeholder": "أدخل البريد الإلكتروني",
+    "phone_placeholder": "أدخل رقم الهاتف",
+    "password_placeholder": "أنشئ كلمة مرور",
+    "confirm_password_placeholder": "أعد كتابة كلمة المرور",
+    "slogan_part1": "رحلة برمجية تبدأ",
+    "slogan_part2": "بالأساس",
+    "slogan_part3": "وتنتهي",
+    "slogan_part4": "بالإحتراف"
+  },
+
+  "reset_password": {
+    "title": "إعادة تعيين كلمة مرور",
+    "email_placeholder": "أدخل البريد الإلكتروني الخاص بالحساب",
+    "send_link": "أرسل رابط التفعيل"
+  },
+
+  "account": {
+    "profile": "الملف الشخصي",
+    "logout": "تسجيل الخروج",
+    "first_name": "الاسم الأول",
+    "last_name": "الاسم الثاني",
+    "birth_date": "تاريخ الميلاد",
+    "email": "البريد الإلكتروني",
+    "email_placeholder": "أدخل البريد الإلكتروني",
+    "phone_number": "رقم الهاتف",
+    "save_changes": "حفظ التغييرات",
+    "registered_courses": "الدورات المسجلة",
+    "no_courses": "لم تقم بتسجيل أي دورات حتى الآن.",
+    "status": "الحالة",
+    "registration_date": "تاريخ التسجيل",
+    "final_price": "السعر النهائي",
+    "amount_paid": "المبلغ المدفوع"
+  },
+
+  "course": {
+    "register_title": "إكمال عملية التسجيل",
+    "student_first_name": "الأسم الأول للطالب",
+    "student_last_name": "الأسم الثاني للطالب",
+    "student_birthdate": "تاريخ ميلاد الطالب",
+    "phone_number": "رقم الهاتف للتواصل",
+    "coupon_optional": "الكوبون (إختياري)",
+    "notes_optional": "ملاحظات (إختياري)",
+    "placeholder_first_name": "أدخل الأسم الأول للطالب",
+    "placeholder_last_name": "أدخل الأسم الثاني للطالب",
+    "placeholder_phone": "أدخل رقم الهاتف",
+    "placeholder_coupon": "أدخل كود الكوبون إن وجد",
+    "placeholder_notes": "اكتب أي ملاحظات هنا...",
+    "submit_button": "تسجيل"
+  },
+
+  "projects": {
+    "section_title": "إنجازات طلابنا",
+    "section_subtitle": "إبداعات حقيقية صنعها طلابنا خلال رحلتهم التعليمية معنا",
+    "no_projects": "لا يوجد مشاريع طلاب",
+    "view_project": "عرض المشروع"
+  },
+
+  "title": {
+    "home": "الصفحة الرئيسية",
+    "login": "صفحة تسجيل الدخول",
+    "sign_up": "صفحة التسجيل",
+    "profile": "الملف الشخصي",
+    "registration": "صفحة التسجيل",
+    "reset": "إعادة تعيين كلمة المرور"
+  },
+
+    "messages": {
+    "already_registered": "لقد قمت بالفعل بالتسجيل في هذا الكورس.",
+    "registration_updated": "تم تحديث بيانات التسجيل وإعادة التقديم.",
+    "registration_success": "تم تسجيل الطالب بنجاح",
+    "invalid_coupon": "الكوبون المدخل غير صحيح",
+    "profile_updated": "تم تعديل المعلومات الملف الشخصي"
+  },
+  "status": {
+    "pending": "قيد الانتظار",
+    "accepted": "مقبول",
+    "rejected": "مرفوض",
+    "canceled": "ملغي",
+    "awaiting_payment": "بانتظار الدفع",
+    "in_progress": "قيد الدراسة"
+  }
+
+}
