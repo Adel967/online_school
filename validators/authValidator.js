@@ -43,7 +43,7 @@ exports.signupValidation = [
     .isMobilePhone()
     .withMessage((value, { req }) => req.__('validation.phoneInvalid'))
     .bail()
-    .isLength({ min: 7, max: 12 })
+    .isLength({ min: 7, max: 15 })
     .withMessage((value, { req }) => req.__('validation.phoneLength')),
 
   body("birthDate")
