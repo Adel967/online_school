@@ -1,88 +1,81 @@
-// validators/authValidator.js
 const { body } = require('express-validator');
 
 exports.registrationValidation = [
   body("studentFirstName")
     .notEmpty()
-    .withMessage("الاسم الأول مطلوب")
+    .withMessage((value, { req }) => req.__('validation.student_first_name_required'))
     .matches(/^[A-Za-z\u0600-\u06FF\s]+$/)
-    .withMessage("الاسم الأول يجب أن يحتوي على أحرف فقط"),
+    .withMessage((value, { req }) => req.__('validation.student_first_name_letters')),
 
   body("studentLastName")
     .notEmpty()
-    .withMessage("الاسم الأخير مطلوب")
+    .withMessage((value, { req }) => req.__('validation.student_last_name_required'))
     .matches(/^[A-Za-z\u0600-\u06FF\s]+$/)
-    .withMessage("الاسم الأخير يجب أن يحتوي على أحرف فقط"),
+    .withMessage((value, { req }) => req.__('validation.student_last_name_letters')),
 
   body("phoneNumber")
     .notEmpty()
-    .withMessage('يجب إدخال رقم الهاتف')
+    .withMessage((value, { req }) => req.__('validation.phone_required'))
     .bail()
     .isMobilePhone()
-    .withMessage('يجب إدخال رقم هاتف صحيح')
+    .withMessage((value, { req }) => req.__('validation.phone_invalid'))
     .bail()
     .isLength({ min: 7, max: 15 })
-    .withMessage('رقم الهاتف يجب أن يكون بين 7 و 12 رقماً'),
+    .withMessage((value, { req }) => req.__('validation.phone_length_registration')),
 
   body("studentBirthDate")
     .notEmpty()
-    .withMessage("تاريخ الميلاد مطلوب")
+    .withMessage((value, { req }) => req.__('validation.birthdate_required'))
     .isDate()
-    .withMessage("تاريخ الميلاد غير صالح"),
+    .withMessage((value, { req }) => req.__('validation.birthdate_invalid')),
 
-    // body('code')
-    //   .isLength({ min: 3 })
-    //   .withMessage(' الكود يجب أن يكون أكثر من 3 أحرف'),
-
-      body('notes')
-      .isLength({ max: 200 })
-      .withMessage(' الملاحظة يجب أن تكون أقل من 200 حرف أحرف'),
+  body('notes')
+    .isLength({ max: 200 })
+    .withMessage((value, { req }) => req.__('validation.notes_length_registration')),
 ];
-
 
 
 exports.registrationEditValidator = [
   body('firstName')
     .trim()
-    .notEmpty().withMessage('First name is required')
-    .isLength({ max: 50 }).withMessage('First name must be under 50 characters'),
+    .notEmpty().withMessage((value, { req }) => req.__('validation.first_name_required'))
+    .isLength({ max: 50 }).withMessage((value, { req }) => req.__('validation.first_name_max')),
 
   body('lastName')
     .trim()
-    .notEmpty().withMessage('Last name is required')
-    .isLength({ max: 50 }).withMessage('Last name must be under 50 characters'),
+    .notEmpty().withMessage((value, { req }) => req.__('validation.last_name_required'))
+    .isLength({ max: 50 }).withMessage((value, { req }) => req.__('validation.last_name_max')),
 
   body('birthDate')
-    .notEmpty().withMessage('Birth date is required')
-    .isDate().withMessage('Birth date must be a valid date'),
+    .notEmpty().withMessage((value, { req }) => req.__('validation.birthdate_required'))
+    .isDate().withMessage((value, { req }) => req.__('validation.birthdate_invalid')),
 
   body('phoneNumber')
-    .notEmpty().withMessage('Phone number is required')
-    .matches(/^[\d+() -]{6,20}$/).withMessage('Phone number format is invalid'),
+    .notEmpty().withMessage((value, { req }) => req.__('validation.phone_required'))
+    .matches(/^[\d+() -]{6,20}$/).withMessage((value, { req }) => req.__('validation.phone_format_invalid')),
 
   body('registrationStatus')
     .optional()
     .isIn(['pending', 'accepted', 'rejected', 'canceled', 'awaiting_payment', 'in_progress'])
-    .withMessage('Invalid registration status'),
+    .withMessage((value, { req }) => req.__('validation.registration_status_invalid')),
 
   body('paidAmount')
     .optional()
-    .isFloat({ min: 0 }).withMessage('Paid amount must be a positive number'),
+    .isFloat({ min: 0 }).withMessage((value, { req }) => req.__('validation.paid_amount_positive')),
 
   body('couponUsed')
     .optional()
-    .isLength({ max: 50 }).withMessage('Coupon code must be under 50 characters'),
+    .isLength({ max: 50 }).withMessage((value, { req }) => req.__('validation.coupon_length')),
 
   body('finalPrice')
-    .notEmpty().withMessage('Final price is required')
-    .isFloat({ min: 0 }).withMessage('Final price must be a positive number'),
+    .notEmpty().withMessage((value, { req }) => req.__('validation.final_price_required'))
+    .isFloat({ min: 0 }).withMessage((value, { req }) => req.__('validation.final_price_positive')),
 
   body('currency')
-    .notEmpty().withMessage('Currency is required')
-    .isIn(['USD', 'EGP', 'SYR']).withMessage('Currency must be one of USD, EGP, or SYR'),
+    .notEmpty().withMessage((value, { req }) => req.__('validation.currency_required'))
+    .isIn(['USD', 'EGP', 'SYR']).withMessage((value, { req }) => req.__('validation.currency_invalid')),
 
   body('notes')
     .optional()
-    .isLength({ max: 500 }).withMessage('Notes must be under 500 characters'),
+    .isLength({ max: 500 }).withMessage((value, { req }) => req.__('validation.notes_length_edit')),
 ];
-

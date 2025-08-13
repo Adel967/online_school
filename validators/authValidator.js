@@ -3,75 +3,64 @@ const { body } = require('express-validator');
 
 exports.loginValidation = [
   body("email")
-  .notEmpty()
-  .withMessage('يجب إدخال البريد الإلكتروني')
-  .bail()
-  .isEmail()
-  .withMessage('الرجاء إدخال بريد إلكتروني صالح')
-  .normalizeEmail(),
-  
-  body("password")
-  .notEmpty()
-  .withMessage("كلمة المرور مطلوبة")
+    .notEmpty()
+    .withMessage((value, { req }) => req.__('validation.emailRequired'))
+    .bail()
+    .isEmail()
+    .withMessage((value, { req }) => req.__('validation.emailInvalid'))
+    .normalizeEmail(),
 
-    // body("phoneNumber")
-    // .notEmpty()
-    // .withMessage('يجب إدخال رقم الهاتف')
-    // .bail() // stop if empty
-    // .isMobilePhone()
-    // .withMessage('يجب إدخال رقم هاتف صحيح')
-    // .bail()
-    // .isLength({ min: 7, max: 12 })
-    // .withMessage('رقم الهاتف يجب أن يكون بين 7 و 12 رقماً'),
-    // body("password").isLength({min: 5}).withMessage('كلمة السر يجب أن تكون أكثر من 5 أحرف')
+  body("password")
+    .notEmpty()
+    .withMessage((value, { req }) => req.__('validation.passwordRequired'))
 ];
 
 exports.signupValidation = [
   body("firstName")
     .notEmpty()
-    .withMessage("الاسم الأول مطلوب")
+    .withMessage((value, { req }) => req.__('validation.firstNameRequired'))
     .matches(/^[A-Za-z\u0600-\u06FF\s]+$/)
-    .withMessage("الاسم الأول يجب أن يحتوي على أحرف فقط"),
+    .withMessage((value, { req }) => req.__('validation.firstNameLettersOnly')),
 
   body("lastName")
     .notEmpty()
-    .withMessage("الاسم الأخير مطلوب")
+    .withMessage((value, { req }) => req.__('validation.lastNameRequired'))
     .matches(/^[A-Za-z\u0600-\u06FF\s]+$/)
-    .withMessage("الاسم الأخير يجب أن يحتوي على أحرف فقط"),
+    .withMessage((value, { req }) => req.__('validation.lastNameLettersOnly')),
 
   body("email")
     .notEmpty()
-    .withMessage('يجب إدخال البريد الإلكتروني')
+    .withMessage((value, { req }) => req.__('validation.emailRequired'))
     .bail()
     .isEmail()
-    .withMessage('الرجاء إدخال بريد إلكتروني صالح')
+    .withMessage((value, { req }) => req.__('validation.emailInvalid'))
     .normalizeEmail(),
 
   body("phoneNumber")
     .notEmpty()
-    .withMessage('يجب إدخال رقم الهاتف')
+    .withMessage((value, { req }) => req.__('validation.phoneRequired'))
     .bail()
     .isMobilePhone()
-    .withMessage('يجب إدخال رقم هاتف صحيح')
+    .withMessage((value, { req }) => req.__('validation.phoneInvalid'))
     .bail()
     .isLength({ min: 7, max: 12 })
-    .withMessage('رقم الهاتف يجب أن يكون بين 7 و 12 رقماً'),
+    .withMessage((value, { req }) => req.__('validation.phoneLength')),
 
   body("birthDate")
     .notEmpty()
-    .withMessage("تاريخ الميلاد مطلوب")
+    .withMessage((value, { req }) => req.__('validation.birthDateRequired'))
     .isDate()
-    .withMessage("تاريخ الميلاد غير صالح"),
+    .withMessage((value, { req }) => req.__('validation.birthDateInvalid')),
 
   body("password")
     .notEmpty()
-    .withMessage("كلمة المرور مطلوبة")
+    .withMessage((value, { req }) => req.__('validation.passwordRequired'))
     .isLength({ min: 5 })
-    .withMessage("كلمة السر يجب أن تكون أكثر من 5 أحرف"),
+    .withMessage((value, { req }) => req.__('validation.passwordMinLength')),
 
   body("confirmPassword")
     .notEmpty()
-    .withMessage("تأكيد كلمة المرور مطلوب")
+    .withMessage((value, { req }) => req.__('validation.confirmPasswordRequired'))
     .custom((value, { req }) => value === req.body.password)
-    .withMessage("كلمتا المرور غير متطابقتين")
+    .withMessage((value, { req }) => req.__('validation.passwordsMismatch'))
 ];

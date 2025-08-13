@@ -127,9 +127,9 @@ Course.hasMany(Registration);
 const PORT = process.env.PORT || 3000;
 
 sequelize.sync(
-    {
-        alter: true
-    }
+    // {
+    //     alter: true
+    // }
 )
     .then(() => User.findByPk(1))
     .then(user => {

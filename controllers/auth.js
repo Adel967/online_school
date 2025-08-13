@@ -172,6 +172,7 @@ exports.postSignUp = (req, res, next) => {
                 firstName: firstName,
                 lastName: lastName,
                 phoneNumber: phoneNumber,
+                email: email,
                 // phoneKey: phoneKey,
                 birthDate: birthDate,
                 password: password,
@@ -212,7 +213,7 @@ exports.postSignUp = (req, res, next) => {
                             firstName: firstName,
                             lastName: lastName,
                             email: email,
-                            // phoneNumber: phoneKey + phoneNumber,
+                            phoneNumber:  phoneNumber,
                             birthDate: birthDate,
                             password: hashedPassword
                         })
