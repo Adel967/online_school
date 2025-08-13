@@ -25,7 +25,7 @@
   "learnProgramming": "Learn programming in a fun and practical way",
   "gameProgramming": "Game Programming",
   "mobileApplications": "Mobile Applications",
-  "programmingFundamentals": "Programming Fundamentals",
+  "programmingFund": "Programming Fundamentals",
   "websiteDesign": "Website Design"
   },
 
@@ -267,7 +267,6 @@
     "currency_required": "Currency is required",
     "currency_invalid": "Currency must be one of USD, EGP, or SYR",
     "notes_length_edit": "Notes must be under 500 characters"
-  
   }
 
 
