@@ -18,7 +18,7 @@ exports.getIndex = async (req, res, next) => {
   const countryCurrencyTranslatedMap = {
     EGP: 'ج.م',
     SYR: 'ل.س',
-    USD: 'دولار'
+    USD: '$'
   };
 
   const userCurrency = getUserCurrency(req);

@@ -43,8 +43,8 @@
         <span class="mx-2">/</span>
         <span class="text-secondary small">
           <%= course.courseSale 
-            ? Math.floor((course.localizedPrice - (course.localizedPrice * course.courseSale / 100)) / course.sessionNumber) 
-            : Math.floor(course.localizedPrice / course.sessionNumber) %> <%= __('courses.per_lesson') %> <%= course.currency %>
+            ? ((course.localizedPrice - (course.localizedPrice * course.courseSale / 100)) / course.sessionNumber).toFixed(1) 
+            : (course.localizedPrice / course.sessionNumber).toFixed(1) %> <%= __('courses.per_lesson') %> <%= course.currency %>
         </span>
       </li>
       <li class="list-group-item" style="padding: 10px 0">
